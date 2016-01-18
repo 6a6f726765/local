@@ -19,7 +19,7 @@ var lines = fileContents.toString().split('\r\n');
 
 for (var i = 0; i < lines.length; i++) {
     db.push(lines[i].toString().split(','));
-};
+}
 
 
 // Leer archivo de texto
@@ -51,7 +51,7 @@ var db1 = []
 for (x=0;x<iMax;x++) 
 { db1[x]=[]
  for (y=0;y<jMax;y++) 
- {db1[x][y]=0; }};
+ {db1[x][y]=0; }}
  
  
 //-----Crear Array de 45 x 45
@@ -156,6 +156,35 @@ util.print(db[i+1][0])
 //BUSCAR COINCIDENCIAS Imprimir Array de 45 x 45 con header
 //-----------------------------------------------------------------
 
+
+
+//-----------------------------------------------------------------
+//Buscar e indexr coincidencias Array de 45 x 45 con header
+for(var num=1;num<46;num++)
+{
+  for (p=0;p<1485;p++)
+    {   for (q=0;q<5;q++)
+        { 
+            if (num== db[p][q] ) 
+            {
+                for (var i =0;i<5;i++ ){
+                    for(var num2=1;num2<46;num2++)
+                    {
+                if(num2==db[p+1][i])
+                {
+                   db1[num2-1][num-1] += 1
+                }
+                }
+                }
+            }
+        }
+    }
+    
+}  
+//Imprimir Array de 45 x 45 con header
+//-----------------------------------------------------------------
+
+console.log(db1[0][0])
 
 //-----------------------------------------------------------------
 //Imprimir Array de 45 x 45 con header
