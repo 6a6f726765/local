@@ -176,6 +176,8 @@ util.print(db[i+1][0])
 //Imprimir Array de 45 x 45 con header
 //-----------------------------------------------------------------
 
+console.log(db1.length)
+
 
 //-----------------------------------------------------------------
 // Escribir el arreglo en consola
