@@ -93,12 +93,13 @@ for(var num=1;num<46;num++)
 //-----------------------------------------------------------------
 //Imprimir Array de 45 x 45 con header
 
+var long45 = 8;
 
- for (p=0;p<6;p++) {  util.print((p) +'\t') } util.print('\n');
+ for (p=0;p<(long45+1);p++) {  util.print((p) +'\t') } util.print('\n');
  
-  for (p=0;p<10;p++)
+  for (p=39;p<45;p++)
     { util.print((p+1) + '\t');
-          for (q=0;q<5;q++)
+          for (q=0;q<long45;q++)
           util.print( db1[p][q] + '\t');
         {
           util.print('\n');
