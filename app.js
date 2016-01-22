@@ -75,7 +75,7 @@ for(var num=1;num<46;num++)
                 {
                     for(var num2=1;num2<46;num2++)
                     {
-                if(num2==db[p+1][i])
+                         if(num2==db[p+1][i])
                         {
                         db1[num2-1][num-1] += 1
                         }
@@ -97,7 +97,7 @@ var long45 = 8;
 
  for (p=0;p<(long45+1);p++) {  util.print((p) +'\t') } util.print('\n');
  
-  for (p=39;p<45;p++)
+  for (p=0;p<45;p++)
     { util.print((p+1) + '\t');
           for (q=0;q<long45;q++)
           util.print( db1[p][q] + '\t');
