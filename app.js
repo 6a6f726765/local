@@ -60,106 +60,10 @@ for (x=0;x<iMax;x++)
 var p; var q;
 
 //-----------------------------------------------------------------
-//Imprimir en archivo Array de 45 x 45 con header
-
-
-/*
- for (p=0;p<46;p++) 
-      {  // fs.appendFileSync('45x45.txt',(p) +'\t') 
-      
-      }
-           fs.appendFileSync('45x45.txt','\n');
-  for (p=0;p<45;p++)
-    { // fs.appendFileSync('45x45.txt',(p+1) + '\t');
-          for (q=0;q<45;q++)
-         fs.appendFileSync('45x45.txt', db1[p][q] + '\t');
-        {
-          fs.appendFileSync('45x45.txt','\n');
-        }
-    }
-*/
-
-//Imprimir en archivo Array de 45 x 45 con header 
-//-----------------------------------------------------------------
-
-//-----------------------------------------------------------------
-// Buscar Imprimir en archivo Array de 45 x 45 con header Coincidencias
-// SIN TERMINAR
-
-/*
-
- for (p=0;p<46;p++) 
-      {   fs.appendFileSync('45x45_contar.txt',(p) +'\t') }
-       
- fs.appendFileSync('45x45_contar.txt','\n');
- 
-  for (p=0;p<45;p++)
-    {  fs.appendFileSync('45x45_contar.txt',(p+1) + '\t');
-          for (q=0;q<45;q++)
-          fs.appendFileSync('45x45_contar.txt', db1[p][q] + '\t');
-        {
-          fs.appendFileSync('45x45_contar.txt','\n');
-        }
-    }
-
-for (var i = 0; i < lines.length; i++)
-      { for (var j = 0; j < 6; j++) {
-            util.print(db[i][j]+'\t');  }
-util.print('\r\n');
-      };
-
-
-console.log(db[0][5])
-console.log(db[1][5])
-console.log(db[2][5])
-
-*/
-
-// SIN TERMINAR
-// Buscar Imprimir en archivo Array de 45 x 45 con header Coincidencias 
-//-----------------------------------------------------------------
-
- 
-//-----------------------------------------------------------------
-//BUSCAR COINCIDENCIAS Imprimir Array de 45 x 45 con header
-/*
-var i = 0
-util.print(db[i+1][0])
-*/
-
-/* 
-  for (p=0;p<10;p++)
-    { util.print((p+1) + '\t');
-          for (q=0;q<5;q++)
-          
-            for (var i = 0; i < lines.length; i++)
-            { for (var j = 0; j < 5; j++) {
-                   if( db[i][j] === db[(i)][j] ) 
-                    {
-                     db1[p][q] += db1[p][q]  
-                 
-                    }
-            
-                    }
-
-      };
-          
-          
-          
-           {
-               
-           }
-    }
-    
-  */   
-    
-//BUSCAR COINCIDENCIAS Imprimir Array de 45 x 45 con header
-//-----------------------------------------------------------------
-
 
 
 //-----------------------------------------------------------------
-//Buscar e indexr coincidencias Array de 45 x 45 con header
+//Buscar e indexar coincidencias Array de 45 x 45 con header
 for(var num=1;num<46;num++)
 {
   for (p=0;p<1485;p++)
@@ -184,7 +88,6 @@ for(var num=1;num<46;num++)
 //Imprimir Array de 45 x 45 con header
 //-----------------------------------------------------------------
 
-console.log(db1[0][0])
 
 //-----------------------------------------------------------------
 //Imprimir Array de 45 x 45 con header
@@ -201,9 +104,31 @@ console.log(db1[0][0])
         }
     }
     
-    
 //Imprimir Array de 45 x 45 con header
 //-----------------------------------------------------------------
+
+
+//-----------------------------------------------------------------
+//Imprimir en archivo Array de 45 x 45 con header
+
+ for (p=0;p<46;p++) 
+      {  // fs.appendFileSync('45x45.txt',(p) +'\t') 
+      
+      }
+           fs.appendFileSync('45x45.txt','\n');
+              for (p=0;p<45;p++)
+    { // fs.appendFileSync('45x45.txt',(p+1) + '\t');
+          for (q=0;q<45;q++)
+         fs.appendFileSync('45x45.txt', db1[p][q] + '\t');
+        {
+          fs.appendFileSync('45x45.txt','\n');
+        }
+    }
+   
+
+//Imprimir en archivo Array de 45 x 45 con header 
+//-----------------------------------------------------------------
+
 
 
 
