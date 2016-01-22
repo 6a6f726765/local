@@ -71,14 +71,15 @@ for(var num=1;num<46;num++)
         { 
             if (num== db[p][q] ) 
             {
-                for (var i =0;i<5;i++ ){
+                for (var i =0;i<5;i++ )
+                {
                     for(var num2=1;num2<46;num2++)
                     {
                 if(num2==db[p+1][i])
-                {
-                   db1[num2-1][num-1] += 1
-                }
-                }
+                        {
+                        db1[num2-1][num-1] += 1
+                        }
+                    }
                 }
             }
         }
@@ -111,19 +112,17 @@ for(var num=1;num<46;num++)
 //-----------------------------------------------------------------
 //Imprimir en archivo Array de 45 x 45 con header
 
- for (p=0;p<46;p++) 
-      {  // fs.appendFileSync('45x45.txt',(p) +'\t') 
-      
-      }
-           fs.appendFileSync('45x45.txt','\n');
-              for (p=0;p<45;p++)
-    { // fs.appendFileSync('45x45.txt',(p+1) + '\t');
-          for (q=0;q<45;q++)
-         fs.appendFileSync('45x45.txt', db1[p][q] + '\t');
-        {
-          fs.appendFileSync('45x45.txt','\n');
+ for (p=0;p<46;p++) {fs.appendFileSync('45x45.txt' , (p)+'\t')}
+ fs.appendFileSync('45x45.txt','\n')
+ 
+ for (p=0;p<45;p++)
+  { fs.appendFileSync('45x45.txt',(p+1)+'\t')
+        {   for (q=0;q<45;q++)
+            fs.appendFileSync('45x45.txt', db1[p][q] + '\t')
+            {
+            fs.appendFileSync('45x45.txt','\n')
+            }
         }
-    }
    
 
 //Imprimir en archivo Array de 45 x 45 con header 
