@@ -123,7 +123,7 @@ for(var num=1;num<46;num++)
             fs.appendFileSync('45x45.txt','\n')
             }
         }
-   
+  }
 
 //Imprimir en archivo Array de 45 x 45 con header 
 //-----------------------------------------------------------------
