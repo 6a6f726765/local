@@ -95,17 +95,17 @@ for(var num=1;num<46;num++)
 
 var long45 = 8;
 
- for (p=0;p<(long45+1);p++) {  process.stdout.write((p) +'\t') } 
- process.stdout.write('\n');
- 
-  for (p=0;p<45;p++)
-    { process.stdout.write((p+1) + '\t');
-          for (q=0;q<long45;q++)
-          process.stdout.write( db1[p][q] + '\t');
-        {
-          process.stdout.write('\n');
-        }
+for (p = 0; p < (long45 + 1); p++) { process.stdout.write((p) + '\t') }
+process.stdout.write('\n');
+
+for (p = 0; p < 45; p++) {
+    process.stdout.write((p + 1) + '\t');
+    for (q = 0; q < long45; q++)
+        process.stdout.write(db1[p][q] + '\t');
+    {
+        process.stdout.write('\n');
     }
+}
     
 //Imprimir Array de 45 x 45 con header
 //-----------------------------------------------------------------
