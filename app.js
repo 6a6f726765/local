@@ -65,8 +65,8 @@ var p; var q;
 //-----------------------------------------------------------------
 //Buscar e indexar coincidencias Array de 45 x 45 con header
 for(var num=1;num<46;num++)
-{
-  for (p=0;p<1485;p++)
+{ 
+  for (p=0;p<(db.length-1);p++)
     {   for (q=0;q<5;q++)
         { 
             if (num== db[p][q] ) 
