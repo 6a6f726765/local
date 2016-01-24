@@ -60,33 +60,37 @@ for (x=0;x<iMax;x++)
 var p; var q;
 
 //-----------------------------------------------------------------
-
+/*
   for (p=0;p<(db.length-1);p++)
     {   for (q=0;q<5;q++)
-        { process.stdout.write(db[p][q])
+        { 
+            process.stdout.write(db[p][q])
         }
     }     
-
+*/
 //-----------------------------------------------------------------
 //Buscar e indexar coincidencias Array de 45 x 45 con header
+
 for(var num=1;num<46;num++)
 {   for (p=0;p<(db.length-1);p++)
-    {   for (q=0;q<5;q++)
+    {   for (q=0;q<6;q++)
         {   if (num== db[p][q] ) 
-            {   for (var i =0;i<5;i++)
+            {   for (var i =0;i<6;i++)
                 {   for (var num2=1;num2<46;num2++)
                     {   if (num2==db[p+1][i])
                         {
-                             db1[num2-1][num-1] += 1
+                           db1[num2-1][num-1] += 1
                         }
                     }
                 }
             }
         }
     }
-}  
+}
 //Imprimir Array de 45 x 45 con header
 //-----------------------------------------------------------------
+//Buscar e indexar coincidencias Array de 45 x 45 con header
+
 
 
 //-----------------------------------------------------------------
