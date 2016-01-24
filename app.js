@@ -87,9 +87,8 @@ for(var num=1;num<46;num++)
         }
     }
 }
-//Imprimir Array de 45 x 45 con header
-//-----------------------------------------------------------------
 //Buscar e indexar coincidencias Array de 45 x 45 con header
+//-----------------------------------------------------------------
 
 
 
