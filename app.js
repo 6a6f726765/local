@@ -106,7 +106,7 @@ for(var num=1;num<46;num++)
 
 var long45 = 8;
 
-for (p = 0; p < 45; p++) {
+for (p = 0; p < 46; p++) {
     
     for (q = 0; q < long45; q++)
         process.stdout.write(db1[p][q] + '\t');
