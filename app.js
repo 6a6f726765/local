@@ -43,8 +43,8 @@ for (var i = 0; i < lines.length; i++) {
 //-----------------------------------------------------------------
 //----Crear Array de 45 x 45
 
-var iMax = 45;
-var jMax = 45;
+var iMax = 46;
+var jMax = 46;
 var x; var y;
 
 var db1 = []
@@ -54,8 +54,17 @@ for (x=0;x<iMax;x++)
  {db1[x][y]=0; }}
  
  
+for (p = 0; p < 46; p++)
+{
+    db1[0][p]=p
+    db1[p][0]=p
+}
+
+ 
 //-----Crear Array de 45 x 45
 //-----------------------------------------------------------------
+
+
 
 var p; var q;
 
@@ -79,7 +88,7 @@ for(var num=1;num<46;num++)
                 {   for (var num2=1;num2<46;num2++)
                     {   if (num2==db[p+1][i])
                         {
-                           db1[num-1][num2-1]+= 1
+                           db1[num][num2]+= 1
                         }
                     }
                 }
@@ -97,11 +106,8 @@ for(var num=1;num<46;num++)
 
 var long45 = 8;
 
-for (p = 0; p < (long45 + 1); p++) { process.stdout.write((p) + '\t') }
-process.stdout.write('\n');
-
 for (p = 0; p < 45; p++) {
-    process.stdout.write((p + 1) + '\t');
+    
     for (q = 0; q < long45; q++)
         process.stdout.write(db1[p][q] + '\t');
     {
@@ -118,22 +124,46 @@ for (p = 0; p < 45; p++) {
 
 var filePath = "/Users/jorge/Node/inception/local/45x45.txt" ; 
 fs.unlinkSync(filePath);
-
- for (p=0;p<46;p++) {fs.appendFileSync('45x45.txt' , (p)+'\t')}
- fs.appendFileSync('45x45.txt','\n')
  
- for (p=0;p<45;p++)
-  { fs.appendFileSync('45x45.txt',(p+1)+'\t')
-        { 
-          for (q=0;q<45;q++)
+ for (p=0;p<46;p++)
+  {   for (q=0;q<46;q++)
               fs.appendFileSync('45x45.txt', db1[p][q] + '\t')
                 {
                     fs.appendFileSync('45x45.txt','\n')
                 }
-        }
+        
   }
 
 //Imprimir en archivo TXT Array de 45 x 45 con header 
+//-----------------------------------------------------------------
+
+
+//-----------------------------------------------------------------
+//----Crear Array de 6 x 45 Desviacion Estandard
+
+var iMax = 6;
+var jMax = 45;
+var p; var q;
+
+var db_dev_std = []
+for (x=0;x<iMax;x++) 
+{ db1[x]=[]
+ for (y=0;y<jMax;y++) 
+ {db1[x][y]=0; }}
+ 
+ for (p = 0; p < (long45 + 1); p++) { process.stdout.write((p) + '\t') }
+process.stdout.write('\n');
+ for (p = 0; p < 6; p++) {
+    process.stdout.write((p + 1) + '\t');
+    for (q = 0; q < long45; q++)
+        process.stdout.write(db1[p][q] + '\t');
+    {
+        process.stdout.write('\n');
+    }
+}
+ 
+  
+//-----Crear Array de 45 x 45
 //-----------------------------------------------------------------
 
 
