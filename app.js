@@ -138,30 +138,68 @@ fs.unlinkSync(filePath);
 //-----------------------------------------------------------------
 
 
+
+
+
+
 //-----------------------------------------------------------------
 //----Crear Array de 6 x 45 Desviacion Estandard
 
-var iMax = 6;
-var jMax = 45;
+var iMax = 7;
+var jMax = 46;
 var p; var q;
 
-var db_dev_std = []
-for (x=0;x<iMax;x++) 
-{ db1[x]=[]
- for (y=0;y<jMax;y++) 
- {db1[x][y]=0; }}
+var db_destd = []
+for (p=0;p<iMax;p++) 
+{ db_destd[p]=[]
+ for (q=0;q<jMax;q++) 
+ {db_destd[p][q]=0; }}
  
- for (p = 0; p < (long45 + 1); p++) { process.stdout.write((p) + '\t') }
-process.stdout.write('\n');
- for (p = 0; p < 6; p++) {
-    process.stdout.write((p + 1) + '\t');
-    for (q = 0; q < long45; q++)
-        process.stdout.write(db1[p][q] + '\t');
+ console.log("Desviacion Estandard") 
+ 
+for(var num=0;num<46;num++)
+    {   for (var num2=0;num2<6;num2++)
+        { if (db1[0][num] == db[(db.length-1)][num2])
+               for (var i =0;i<46;i++)
+             {
+               db_destd[num2+1][i] = db1[num][i] 
+             }
+          else if (db1[0][0] == 0)
+               for (var i =0;i<46;i++)
+             {
+               db_destd[0][i] = db1[0][i] 
+             }
+             
+        }
+    
+    }
+    
+    
+  
+// Imprimir contenido del Array  db_destd (Desviacion Estandard) 
+ for (p = 0; p < 7; p++) {
+    for (q = 0; q < 8; q++)
+        process.stdout.write(db_destd[p][q] + '\t');
     {
         process.stdout.write('\n');
     }
 }
- 
+// Imprimir contenido del Array  db_destd (Desviacion Estandard) 
+  
+    
+
+/*
+
+while
+
+var text = "";
+var i = 0;
+do {
+    text += "The number is " + i;
+    i++;
+}
+while (i < 5);
+*/
   
 //-----Crear Array de 45 x 45
 //-----------------------------------------------------------------
