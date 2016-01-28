@@ -227,6 +227,14 @@ for (var i1=1;i1<=45;i1++)
         db_destd[10][i1] = db_destd[8][i1]-db_destd[9][i1]
 
         }
+        
+
+db_destd[7][0]="SUMA"        
+db_destd[8][0]="MEAN"
+db_destd[9][0]="STD "
+db_destd[10][0]="MIN "
+
+        
 // Calcular Desviacion Standard el Promedio de db_destd 
 //-----------------------------------------------------------------
 
@@ -261,6 +269,7 @@ for (var p3=1;p3<6;p3++)
 //-----------------------------------------------------------------
 
 //-----------------------------------------------------------------
+// Suma Desviacion Estadard Resultado
 for (var f5 =1;f5<7;f5++) 
         {   for(var c5 =1;c5<46;c5++)
             {
@@ -268,9 +277,120 @@ for (var f5 =1;f5<7;f5++)
             }
 }
 
+db_destdres[7][0]="SUMA"
+
+// Suma Desviacion Estadard Resultado
+//-----------------------------------------------------------------
 
 
 
+//-----------------------------------------------------------------
+// Comentarios
+db_destdres[8][0] = math.mean(  db_destdres[7][1],
+                                db_destdres[7][2],
+                                db_destdres[7][3],
+                                db_destdres[7][4],
+                                db_destdres[7][5],
+                                db_destdres[7][6],
+                                db_destdres[7][7],
+                                db_destdres[7][8],
+                                db_destdres[7][9],
+                                db_destdres[7][10],
+                                db_destdres[7][11],
+                                db_destdres[7][12],
+                                db_destdres[7][13],
+                                db_destdres[7][14],
+                                db_destdres[7][15],
+                                db_destdres[7][16],
+                                db_destdres[7][17],
+                                db_destdres[7][18],
+                                db_destdres[7][19],
+                                db_destdres[7][20],
+                                db_destdres[7][21],
+                                db_destdres[7][22],
+                                db_destdres[7][23],
+                                db_destdres[7][24],
+                                db_destdres[7][25],
+                                db_destdres[7][26],
+                                db_destdres[7][27],
+                                db_destdres[7][28],
+                                db_destdres[7][29],
+                                db_destdres[7][30],
+                                db_destdres[7][31],
+                                db_destdres[7][32],
+                                db_destdres[7][33],
+                                db_destdres[7][34],
+                                db_destdres[7][35],
+                                db_destdres[7][36],
+                                db_destdres[7][37],
+                                db_destdres[7][38],
+                                db_destdres[7][39],
+                                db_destdres[7][40],
+                                db_destdres[7][41],
+                                db_destdres[7][42],
+                                db_destdres[7][43],
+                                db_destdres[7][44],
+                                db_destdres[7][45]
+                                ) 
+
+db_destdres[9][0] = math.std(  db_destdres[7][1],
+                                db_destdres[7][2],
+                                db_destdres[7][3],
+                                db_destdres[7][4],
+                                db_destdres[7][5],
+                                db_destdres[7][6],
+                                db_destdres[7][7],
+                                db_destdres[7][8],
+                                db_destdres[7][9],
+                                db_destdres[7][10],
+                                db_destdres[7][11],
+                                db_destdres[7][12],
+                                db_destdres[7][13],
+                                db_destdres[7][14],
+                                db_destdres[7][15],
+                                db_destdres[7][16],
+                                db_destdres[7][17],
+                                db_destdres[7][18],
+                                db_destdres[7][19],
+                                db_destdres[7][20],
+                                db_destdres[7][21],
+                                db_destdres[7][22],
+                                db_destdres[7][23],
+                                db_destdres[7][24],
+                                db_destdres[7][25],
+                                db_destdres[7][26],
+                                db_destdres[7][27],
+                                db_destdres[7][28],
+                                db_destdres[7][29],
+                                db_destdres[7][30],
+                                db_destdres[7][31],
+                                db_destdres[7][32],
+                                db_destdres[7][33],
+                                db_destdres[7][34],
+                                db_destdres[7][35],
+                                db_destdres[7][36],
+                                db_destdres[7][37],
+                                db_destdres[7][38],
+                                db_destdres[7][39],
+                                db_destdres[7][40],
+                                db_destdres[7][41],
+                                db_destdres[7][42],
+                                db_destdres[7][43],
+                                db_destdres[7][44],
+                                db_destdres[7][45]
+                                ) 
+                                
+db_destdres[10][0] =db_destdres[8][0]-db_destdres[9][0]
+// Comentarios
+//-----------------------------------------------------------------
+
+
+for (var p4 =1;p4<46;p4++)
+    {   if (db_destdres[7][p4] < db_destdres[10][0]) 
+            {
+                db_destdres[8][p4]= db_destdres[0][p4]
+            }
+    }
 
 //-----------------------------------------------------------------
 // Imprimir contenido del Array  db_destd (Desviacion Estandard)
@@ -290,8 +410,8 @@ for (var f5 =1;f5<7;f5++)
 
 console.log("Desviacion Estandard Resultado")
 
- for (p = 0; p < 8 ; p++) {
-    for (q = 0; q < 17; q++)
+ for (p = 0; p < 12 ; p++) {
+    for (q = 0; q < 13; q++)
         process.stdout.write(db_destdres[p][q] + '\t');
     {
         process.stdout.write('\n');
@@ -300,6 +420,14 @@ console.log("Desviacion Estandard Resultado")
 // Imprimir contenido del Array  db_destd (Desviacion Estandard)
 //-----------------------------------------------------------------
 
+console.log("Desviacion Estandard Resultado Posibles")
+
+ for (var p5=1;p5<46;p5++)
+ {  if (db_destdres[8][p5]>0)  
+        {
+        console.log(db_destdres[8][p5])
+        }    
+ }
 
 
 
