@@ -111,11 +111,11 @@ for(var num=1;num<46;num++)
 //-----------------------------------------------------------------
 //Imprimir Array de 45 x 45 con header
 
-var long45 = 36;
+var long45 = 11;
        
 
 for (p = 0; p < 46; p++) 
-    {   for (q = 30; q < long45; q++)
+    {   for (q = 0; q < long45; q++)
         process.stdout.write(db1[p][q] + '\t');
             {
                 process.stdout.write('\n');
@@ -391,13 +391,16 @@ db_destdres[9][0] = math.std(  db_destdres[7][1],
                                 ) 
                                 
 db_destdres[10][0] =db_destdres[8][0]-db_destdres[9][0]
+db_destdres[11][0] =db_destdres[8][0]+db_destdres[9][0]
+
+
+
 // Comentarios
 //-----------------------------------------------------------------
 
 
 for (var p4 =1;p4<46;p4++)
-    {   if (db_destdres[7][p4] < db_destdres[10][0] ||
-            db_destdres[7][p4] > db_destdres[10][0]
+    {   if (db_destdres[7][p4] < db_destdres[10][0] 
             ) 
             {
                 db_destdres[8][p4]= db_destdres[0][p4]
@@ -410,7 +413,7 @@ for (var p4 =1;p4<46;p4++)
  console.log("Desviacion Estandard")
 
  for (p = 0; p < pMax; p++) {
-    for (q = 30; q < 36; q++)
+    for (q = 0; q < 3; q++)
         process.stdout.write(db_destd[p][q] + '\t');
     {
         process.stdout.write('\n');
@@ -423,7 +426,7 @@ for (var p4 =1;p4<46;p4++)
 console.log("Desviacion Estandard Resultado")
 
  for (p = 0; p < 12 ; p++) {
-    for (q = 30; q < 36; q++)
+    for (q = 0; q < 11; q++)
         process.stdout.write(db_destdres[p][q] + '\t');
     {
         process.stdout.write('\n');
@@ -435,22 +438,31 @@ console.log("Desviacion Estandard Resultado")
 console.log("Desviacion Estandard Resultado Posibles")
 
  for (var p5=1;p5<46;p5++)
- {  if (db_destdres[8][p5]>0)  
-        {   for (var q5 =0;q5<6;q5++)
-                {if(db[(db.length-1)][q5]==db_destdres[8][p5])
+ {  if (db_destdres[8][p5]>0) 
+        { for (var p6=0;p6 <6;p6++) 
+                {if (db[(db.length-1)][p6] == db_destdres[8][p5] )       
                     {
-                        console.log(db[(db.length-1)][q5] + " " + db_destdres[8][p5] + " ERROR")    
+                        console.log(db_destdres[8][p5] + " ERROR" )          
                     }
-                  else  
-                    {
-                        console.log(db[(db.length-1)][q5] + " "  + " " + db_destdres[8][p5] + " CHECK")    
-                    }
-                    
-                        
+                 
+                  
                 }
-                
-        }    
+                        
+        }
+            
  }
+
+for (var p5=1;p5<46;p5++)
+ {  if (db_destdres[8][p5]>0) 
+ {
+        
+      console.log(db_destdres[8][p5] + " CHECK" )          
+                    }
+ }
+                 
+                  
+        
+
 
 
 
