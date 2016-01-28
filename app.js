@@ -148,24 +148,27 @@ fs.unlinkSync(filePath);
 //---- y Desviacion Estandard Resultado  
 
 // db_destd == Desviacion Estandard 
-var iMax = 12;
-var jMax = 46;
+var pMax = 12;
+var qMax = 46;
 var p; var q;
 
 var db_destd = []
-for (p=0;p<iMax;p++)
+for (p=0;p<pMax;p++)
 { db_destd[p]=[]
- for (q=0;q<jMax;q++)
+ for (q=0;q<qMax;q++)
  {db_destd[p][q]=0; }}
 
 // db_destdres == Desviacion Estandard Resultado 
 
 
 var db_destdres = []
-for (p=0;p<iMax;p++)
+for (p=0;p<pMax;p++)
 { db_destdres[p]=[]
- for (q=0;q<jMax;q++)
+ for (q=0;q<qMax;q++)
  {db_destdres[p][q]=0; }}
+
+
+//-----------------------------------------------------------------
 
 
 for(var num=0;num<46;num++)
@@ -184,6 +187,7 @@ for(var num=0;num<46;num++)
         }
 
     }
+//-----------------------------------------------------------------
 
 
 
@@ -197,6 +201,8 @@ for (var p1 = 1; p1<46 ; p1++)
     }
 // Suma Desviacion Estadard
 //-----------------------------------------------------------------
+
+
 
 //-----------------------------------------------------------------
 // Calcular Desviacion Standard el Promedio de db_destd
@@ -226,13 +232,15 @@ for (var i1=1;i1<=45;i1++)
 
 
 
+
+
 //-----------------------------------------------------------------
 // Pasar datos de db_destd a db_destdres 
 
-for (var p3=0;p3<iMax;p3++)
-    {   for (var q3=0;q3<jMax;q3++)
+for (var f3=0;f3<7;f3++)
+    {   for (var c3=0;c3<qMax;c3++)
             {
-                db_destdres[p3][q3] = db_destd[p3][q3]
+                db_destdres[f3][c3] = db_destd[f3][c3]
             }
     }
 // Pasar datos de db_destd a db_destdres 
@@ -240,9 +248,9 @@ for (var p3=0;p3<iMax;p3++)
 
 //-----------------------------------------------------------------
 // Eliminar valores fueras de la Desviacion Estantader
-for (var p3=0;p3<iMax;p3++)
-    {   for (var q3=0;q3<=6;q3++)
-                {   if (db_destdres[p3][q3] < db_destdres[10][q3] )
+for (var p3=1;p3<6;p3++)
+    {   for (var q3=0;q3<=45;q3++)
+                {   if (db_destdres[p3][q3] < db_destd[10][q3] )
                         {
                             db_destdres[p3][q3]= 0
                         }
@@ -253,30 +261,12 @@ for (var p3=0;p3<iMax;p3++)
 //-----------------------------------------------------------------
 
 //-----------------------------------------------------------------
-// Calcular Desviacion Standard y el Promedio de db_destdres
-for (var i1=1;i1<=45;i1++) 
-        {
-        db_destd[9][i1] = math.std( db_destd[1][i1],
-                                    db_destd[2][i1],
-                                    db_destd[3][i1],
-                                    db_destd[4][i1],
-                                    db_destd[5][i1],
-                                    db_destd[6][i1]
-                                ) 
-
-        db_destd[8][i1] = math.mean(db_destd[1][i1],
-                                    db_destd[2][i1],
-                                    db_destd[3][i1],
-                                    db_destd[4][i1],
-                                    db_destd[5][i1],
-                                    db_destd[6][i1]
-                                ) 
-                                
-        db_destd[10][i1] = db_destd[8][i1]-db_destd[9][i1]
-
-        }
-// Calcular Desviacion Standard el Promedio de db_destdres 
-//-----------------------------------------------------------------
+for (var f5 =1;f5<7;f5++) 
+        {   for(var c5 =1;c5<46;c5++)
+            {
+                db_destdres[7][c5] += db_destdres[f5][c5]
+            }
+}
 
 
 
@@ -287,7 +277,7 @@ for (var i1=1;i1<=45;i1++)
 
  console.log("Desviacion Estandard")
 
- for (p = 0; p < iMax; p++) {
+ for (p = 0; p < pMax; p++) {
     for (q = 0; q < 3; q++)
         process.stdout.write(db_destd[p][q] + '\t');
     {
@@ -300,8 +290,8 @@ for (var i1=1;i1<=45;i1++)
 
 console.log("Desviacion Estandard Resultado")
 
- for (p = 0; p < iMax ; p++) {
-    for (q = 0; q < 3; q++)
+ for (p = 0; p < 8 ; p++) {
+    for (q = 0; q < 17; q++)
         process.stdout.write(db_destdres[p][q] + '\t');
     {
         process.stdout.write('\n');
