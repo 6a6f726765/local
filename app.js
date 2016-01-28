@@ -5,6 +5,7 @@
 
 var util = require('util');
 const fs = require('fs');
+const math = require('mathjs')
 
 //fs.unlinkSync('/Users/jorge/Node/project/LOCAL/PQRST/45x45.txt');
 //console.log('successfully deleted 45x45.txt');
@@ -34,7 +35,7 @@ for (var i = 0; i < lines.length; i++) {
 //util.print(db[1][5]+'\n');
 //--------------F--C
 
-    
+
 //----Testing Fila y Columna
 //-----------------------------------------------------------------
 
@@ -48,19 +49,19 @@ var jMax = 46;
 var x; var y;
 
 var db1 = []
-for (x=0;x<iMax;x++) 
+for (x=0;x<iMax;x++)
 { db1[x]=[]
- for (y=0;y<jMax;y++) 
+ for (y=0;y<jMax;y++)
  {db1[x][y]=0; }}
- 
- 
+
+
 for (p = 0; p < 46; p++)
 {
     db1[0][p]=p
     db1[p][0]=p
 }
 
- 
+
 //-----Crear Array de 45 x 45
 //-----------------------------------------------------------------
 
@@ -72,10 +73,10 @@ var p; var q;
 /*
   for (p=0;p<(db.length-1);p++)
     {   for (q=0;q<5;q++)
-        { 
+        {
             process.stdout.write(db[p][q])
         }
-    }     
+    }
 */
 //-----------------------------------------------------------------
 //Buscar e indexar coincidencias Array de 45 x 45 con header
@@ -83,7 +84,7 @@ var p; var q;
 for(var num=1;num<46;num++)
 {   for (p=0;p<(db.length-1);p++)
     {   for (q=0;q<6;q++)
-        {   if (num== db[p][q] ) 
+        {   if (num== db[p][q] )
             {   for (var i =0;i<6;i++)
                 {   for (var num2=1;num2<46;num2++)
                     {   if (num2==db[p+1][i])
@@ -107,14 +108,14 @@ for(var num=1;num<46;num++)
 var long45 = 8;
 
 for (p = 0; p < 46; p++) {
-    
+
     for (q = 0; q < long45; q++)
         process.stdout.write(db1[p][q] + '\t');
     {
         process.stdout.write('\n');
     }
 }
-    
+
 //Imprimir Array de 45 x 45 con header
 //-----------------------------------------------------------------
 
@@ -122,19 +123,19 @@ for (p = 0; p < 46; p++) {
 //-----------------------------------------------------------------
 //Imprimir en archivo TXT Array de 45 x 45 con header
 
-var filePath = "/Users/jorge/Node/inception/local/45x45.txt" ; 
+var filePath = "/Users/jorge/Node/inception/local/45x45.txt" ;
 fs.unlinkSync(filePath);
- 
+
  for (p=0;p<46;p++)
   {   for (q=0;q<46;q++)
               fs.appendFileSync('45x45.txt', db1[p][q] + '\t')
                 {
                     fs.appendFileSync('45x45.txt','\n')
                 }
-        
+
   }
 
-//Imprimir en archivo TXT Array de 45 x 45 con header 
+//Imprimir en archivo TXT Array de 45 x 45 con header
 //-----------------------------------------------------------------
 
 
@@ -143,39 +144,49 @@ fs.unlinkSync(filePath);
 
 
 //-----------------------------------------------------------------
-//----Crear Array de 6 x 45 Desviacion Estandard
+//----Crear Array de 6 x 45 Desviacion Estandard 
+//---- y Desviacion Estandard Resultado  
 
+// db_destd == Desviacion Estandard 
 var iMax = 12;
 var jMax = 46;
 var p; var q;
 
 var db_destd = []
-for (p=0;p<iMax;p++) 
+for (p=0;p<iMax;p++)
 { db_destd[p]=[]
- for (q=0;q<jMax;q++) 
+ for (q=0;q<jMax;q++)
  {db_destd[p][q]=0; }}
- 
- console.log("Desviacion Estandard") 
- 
+
+// db_destdres == Desviacion Estandard Resultado 
+
+
+var db_destdres = []
+for (p=0;p<iMax;p++)
+{ db_destdres[p]=[]
+ for (q=0;q<jMax;q++)
+ {db_destdres[p][q]=0; }}
+
+
 for(var num=0;num<46;num++)
     {   for (var num2=0;num2<6;num2++)
         { if (db1[0][num] == db[(db.length-1)][num2])
                for (var i =0;i<46;i++)
              {
-               db_destd[num2+1][i] = db1[num][i] 
+               db_destd[num2+1][i] = db1[num][i]
              }
           else if (db1[0][0] == 0)
                for (var i =0;i<46;i++)
              {
-               db_destd[0][i] = db1[0][i] 
+               db_destd[0][i] = db1[0][i]
              }
-             
+
         }
-    
+
     }
-    
- 
-  
+
+
+
 //-----------------------------------------------------------------
 // Suma Desviacion Estadard
 for (var p1 = 1; p1<46 ; p1++)
@@ -188,17 +199,116 @@ for (var p1 = 1; p1<46 ; p1++)
 //-----------------------------------------------------------------
 
 //-----------------------------------------------------------------
-// Imprimir contenido del Array  db_destd (Desviacion Estandard) 
- for (p = 0; p < 11; p++) {
-    for (q = 0; q < 8; q++)
+// Calcular Desviacion Standard el Promedio de db_destd
+for (var i1=1;i1<=45;i1++) 
+        {
+        db_destd[9][i1] = math.std( db_destd[1][i1],
+                                    db_destd[2][i1],
+                                    db_destd[3][i1],
+                                    db_destd[4][i1],
+                                    db_destd[5][i1],
+                                    db_destd[6][i1]
+                                ) 
+
+        db_destd[8][i1] = math.mean(db_destd[1][i1],
+                                    db_destd[2][i1],
+                                    db_destd[3][i1],
+                                    db_destd[4][i1],
+                                    db_destd[5][i1],
+                                    db_destd[6][i1]
+                                ) 
+                                
+        db_destd[10][i1] = db_destd[8][i1]-db_destd[9][i1]
+
+        }
+// Calcular Desviacion Standard el Promedio de db_destd 
+//-----------------------------------------------------------------
+
+
+
+//-----------------------------------------------------------------
+// Pasar datos de db_destd a db_destdres 
+
+for (var p3=0;p3<iMax;p3++)
+    {   for (var q3=0;q3<jMax;q3++)
+            {
+                db_destdres[p3][q3] = db_destd[p3][q3]
+            }
+    }
+// Pasar datos de db_destd a db_destdres 
+//-----------------------------------------------------------------
+
+//-----------------------------------------------------------------
+// Eliminar valores fueras de la Desviacion Estantader
+for (var p3=0;p3<iMax;p3++)
+    {   for (var q3=0;q3<=6;q3++)
+                {   if (db_destdres[p3][q3] < db_destdres[10][q3] )
+                        {
+                            db_destdres[p3][q3]= 0
+                        }
+                    
+                }
+    }
+// Eliminar valores fueras de la Desviacion Estantader
+//-----------------------------------------------------------------
+
+//-----------------------------------------------------------------
+// Calcular Desviacion Standard y el Promedio de db_destdres
+for (var i1=1;i1<=45;i1++) 
+        {
+        db_destd[9][i1] = math.std( db_destd[1][i1],
+                                    db_destd[2][i1],
+                                    db_destd[3][i1],
+                                    db_destd[4][i1],
+                                    db_destd[5][i1],
+                                    db_destd[6][i1]
+                                ) 
+
+        db_destd[8][i1] = math.mean(db_destd[1][i1],
+                                    db_destd[2][i1],
+                                    db_destd[3][i1],
+                                    db_destd[4][i1],
+                                    db_destd[5][i1],
+                                    db_destd[6][i1]
+                                ) 
+                                
+        db_destd[10][i1] = db_destd[8][i1]-db_destd[9][i1]
+
+        }
+// Calcular Desviacion Standard el Promedio de db_destdres 
+//-----------------------------------------------------------------
+
+
+
+
+
+//-----------------------------------------------------------------
+// Imprimir contenido del Array  db_destd (Desviacion Estandard)
+
+ console.log("Desviacion Estandard")
+
+ for (p = 0; p < iMax; p++) {
+    for (q = 0; q < 3; q++)
         process.stdout.write(db_destd[p][q] + '\t');
     {
         process.stdout.write('\n');
     }
 }
-// Imprimir contenido del Array  db_destd (Desviacion Estandard) 
+// Imprimir contenido del Array  db_destd (Desviacion Estandard)
 //-----------------------------------------------------------------
+// Imprimir contenido del Array  db_destd (Desviacion Estandard)
 
+console.log("Desviacion Estandard Resultado")
+
+ for (p = 0; p < iMax ; p++) {
+    for (q = 0; q < 3; q++)
+        process.stdout.write(db_destdres[p][q] + '\t');
+    {
+        process.stdout.write('\n');
+    }
+}
+// Imprimir contenido del Array  db_destd (Desviacion Estandard)
+//-----------------------------------------------------------------
 
 
 
@@ -228,20 +338,20 @@ for (var x = 0; x < lines.length; x++)
 fs.appendFileSync('out.txt','\r\n'); } ;
  */
 
-// Escribir arreglo en el Archivo 
+// Escribir arreglo en el Archivo
 //-----------------------------------------------------------------
 
 //-----------------------------------------------------------------
-//Escribir archivo con ruta universal 
+//Escribir archivo con ruta universal
 
 
 
-/* 
+/*
 var path = require('path');
 var fs = require('fs');
- 
+
 var filePath = path.join(__dirname, 'files', 'test.txt');
- 
+
 fs.writeFile(filePath, 'Write text to file, overwrite all.', function(err) {
     if(err) {
         return console.log('Unable to write file ' + err);
@@ -252,7 +362,7 @@ fs.writeFile(filePath, 'Write text to file, overwrite all.', function(err) {
 
 */
 
-  
-//Escribir archivo con ruta universal 
+
+//Escribir archivo con ruta universal
 //-----------------------------------------------------------------
 
