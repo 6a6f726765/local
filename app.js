@@ -12,15 +12,21 @@ const math = require('mathjs')
 
 
 var db = [];
-var fileContents = fs.readFileSync('database.txt');
-var lines = fileContents.toString().split('\r\n');
+var fileContents = fs.readFileSync('database.txt')
+var lines = fileContents.toString().split('\r\n')
 
 // Imprimir longuitud de Arreglo
-//util.print(lines.length+'\n');
+util.print(lines.length+'\n');
 
-for (var i = 0; i < lines.length; i++) {
-    db.push(lines[i].toString().split(','));
-}
+
+
+for (var i = 0; i < lines.length; i++) 
+    {
+        db.push(lines[i].toString().split(','))
+    }
+
+util.print(db.length+'\n');
+
 
 
 // Leer archivo de texto
@@ -80,9 +86,9 @@ var p; var q;
 */
 //-----------------------------------------------------------------
 //Buscar e indexar coincidencias Array de 45 x 45 con header
-
+ 
 for(var num=1;num<46;num++)
-{   for (p=0;p<(db.length-1);p++)
+{   for (p=0;p<(db.length-2);p++)
     {   for (q=0;q<6;q++)
         {   if (num== db[p][q] )
             {   for (var i =0;i<6;i++)
@@ -105,15 +111,15 @@ for(var num=1;num<46;num++)
 //-----------------------------------------------------------------
 //Imprimir Array de 45 x 45 con header
 
-var long45 = 8;
+var long45 = 36;
+       
 
-for (p = 0; p < 46; p++) {
-
-    for (q = 0; q < long45; q++)
+for (p = 0; p < 46; p++) 
+    {   for (q = 30; q < long45; q++)
         process.stdout.write(db1[p][q] + '\t');
-    {
-        process.stdout.write('\n');
-    }
+            {
+                process.stdout.write('\n');
+            }
 }
 
 //Imprimir Array de 45 x 45 con header
@@ -173,7 +179,7 @@ for (p=0;p<pMax;p++)
 
 for(var num=0;num<46;num++)
     {   for (var num2=0;num2<6;num2++)
-        { if (db1[0][num] == db[(db.length-1)][num2])
+        { if (db1[0][num] == db[(db.length-2)][num2])
                for (var i =0;i<46;i++)
              {
                db_destd[num2+1][i] = db1[num][i]
@@ -225,6 +231,8 @@ for (var i1=1;i1<=45;i1++)
                                 ) 
                                 
         db_destd[10][i1] = db_destd[8][i1]-db_destd[9][i1]
+        db_destd[11][i1] = db_destd[8][i1]+db_destd[9][i1]
+        
 
         }
         
@@ -233,6 +241,7 @@ db_destd[7][0]="SUMA"
 db_destd[8][0]="MEAN"
 db_destd[9][0]="STD "
 db_destd[10][0]="MIN "
+db_destd[11][0]="MAX "
 
         
 // Calcular Desviacion Standard el Promedio de db_destd 
@@ -258,7 +267,8 @@ for (var f3=0;f3<7;f3++)
 // Eliminar valores fueras de la Desviacion Estantader
 for (var p3=1;p3<6;p3++)
     {   for (var q3=0;q3<=45;q3++)
-                {   if (db_destdres[p3][q3] < db_destd[10][q3] )
+                {   if (db_destdres[p3][q3] < db_destd[10][q3] ||
+                        db_destdres[p3][q3] > db_destd[11][q3] )
                         {
                             db_destdres[p3][q3]= 0
                         }
@@ -398,7 +408,7 @@ for (var p4 =1;p4<46;p4++)
  console.log("Desviacion Estandard")
 
  for (p = 0; p < pMax; p++) {
-    for (q = 0; q < 3; q++)
+    for (q = 30; q < 36; q++)
         process.stdout.write(db_destd[p][q] + '\t');
     {
         process.stdout.write('\n');
@@ -411,7 +421,7 @@ for (var p4 =1;p4<46;p4++)
 console.log("Desviacion Estandard Resultado")
 
  for (p = 0; p < 12 ; p++) {
-    for (q = 0; q < 13; q++)
+    for (q = 30; q < 36; q++)
         process.stdout.write(db_destdres[p][q] + '\t');
     {
         process.stdout.write('\n');
@@ -424,8 +434,19 @@ console.log("Desviacion Estandard Resultado Posibles")
 
  for (var p5=1;p5<46;p5++)
  {  if (db_destdres[8][p5]>0)  
-        {
-        console.log(db_destdres[8][p5])
+        {   for (var q5 =0;q5<6;q5++)
+                {if(db[(db.length-1)][q5]==db_destdres[8][p5])
+                    {
+                        console.log(db[(db.length-1)][q5] + " " + db_destdres[8][p5] + " ERROR")    
+                    }
+                  else  
+                    {
+                        console.log(db[(db.length-1)][q5] + " "  + " " + db_destdres[8][p5] + " CHECK")    
+                    }
+                    
+                        
+                }
+                
         }    
  }
 
