@@ -396,7 +396,9 @@ db_destdres[10][0] =db_destdres[8][0]-db_destdres[9][0]
 
 
 for (var p4 =1;p4<46;p4++)
-    {   if (db_destdres[7][p4] < db_destdres[10][0]) 
+    {   if (db_destdres[7][p4] < db_destdres[10][0] ||
+            db_destdres[7][p4] > db_destdres[10][0]
+            ) 
             {
                 db_destdres[8][p4]= db_destdres[0][p4]
             }
