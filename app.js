@@ -145,7 +145,7 @@ fs.unlinkSync(filePath);
 //-----------------------------------------------------------------
 //----Crear Array de 6 x 45 Desviacion Estandard
 
-var iMax = 7;
+var iMax = 12;
 var jMax = 46;
 var p; var q;
 
@@ -174,10 +174,22 @@ for(var num=0;num<46;num++)
     
     }
     
-    
+ 
   
+//-----------------------------------------------------------------
+// Suma Desviacion Estadard
+for (var p1 = 1; p1<46 ; p1++)
+    {   for (var q1 = 1; q1<7 ;q1++)
+            {
+                db_destd[7][p1] += db_destd[q1][p1]
+            }
+    }
+// Suma Desviacion Estadard
+//-----------------------------------------------------------------
+
+//-----------------------------------------------------------------
 // Imprimir contenido del Array  db_destd (Desviacion Estandard) 
- for (p = 0; p < 7; p++) {
+ for (p = 0; p < 11; p++) {
     for (q = 0; q < 8; q++)
         process.stdout.write(db_destd[p][q] + '\t');
     {
@@ -185,26 +197,7 @@ for(var num=0;num<46;num++)
     }
 }
 // Imprimir contenido del Array  db_destd (Desviacion Estandard) 
-  
-    
-
-/*
-
-while
-
-var text = "";
-var i = 0;
-do {
-    text += "The number is " + i;
-    i++;
-}
-while (i < 5);
-*/
-  
-//-----Crear Array de 45 x 45
 //-----------------------------------------------------------------
-
-
 
 
 
