@@ -1,5 +1,5 @@
 "use strict";
-//113
+//115
 
 //-----------------------------------------------------------------
 // Leer archivo de texto
@@ -7,6 +7,8 @@
 var util = require('util');
 const fs = require('fs');
 const math = require('mathjs')
+const next = 1 // Numero Menor
+const back = 2 // Numero Mayor 
 
 //fs.unlinkSync('/Users/jorge/Node/project/LOCAL/PQRST/45x45.txt');
 //console.log('successfully deleted 45x45.txt');
@@ -41,7 +43,6 @@ for (var i = 0; i < lines.length; i++)
 
 //----Testing Fila y Columna
 //-----------------------------------------------------------------
-
 
 
 //-----------------------------------------------------------------
@@ -85,7 +86,7 @@ var p; var q;
 //Buscar e indexar coincidencias Array de 45 x 45 con header
  
 for(var num=1;num<46;num++)
-{   for (p=0;p<(db.length-2);p++)
+{   for (p=0;p<(db.length-back);p++)
     {   for (q=0;q<6;q++)
         {   if (num== db[p][q] )
             {   for (var i =0;i<6;i++)
@@ -103,7 +104,6 @@ for(var num=1;num<46;num++)
 //Buscar e indexar coincidencias Array de 45 x 45 con header
 //-----------------------------------------------------------------
 
-console.log(db[(db.length-2)][0])
 //-----------------------------------------------------------------
 //Imprimir Array de 45 x 45 con header
 
@@ -171,11 +171,11 @@ for (p=0;p<pMax;p++)
 
 
 //-----------------------------------------------------------------
-
+// Pasar los valores de la DB1 a la DB_DESTD
 
 for(var num=0;num<46;num++)
     {   for (var num2=0;num2<6;num2++)
-        { if (db1[0][num] == db[(db.length-2)][num2])
+        { if (db1[0][num] == db[(db.length-back)][num2])
                for (var i =0;i<46;i++)
              {
                db_destd[num2+1][i] = db1[num][i]
@@ -189,6 +189,7 @@ for(var num=0;num<46;num++)
         }
 
     }
+//    
 //-----------------------------------------------------------------
 
 
@@ -210,12 +211,14 @@ for (var p1 = 1; p1<46 ; p1++)
 // Calcular Desviacion Standard el Promedio de db_destd
 for (var i1=1;i1<=45;i1++) 
         {
-        db_destd[9][i1] = math.std( db_destd[1][i1],
+        db_destd[9][i1] = math.std( [db_destd[1][i1],
                                     db_destd[2][i1],
                                     db_destd[3][i1],
                                     db_destd[4][i1],
                                     db_destd[5][i1],
-                                    db_destd[6][i1]
+                                    db_destd[6][i1]],
+                                    //'biased'
+                                    'uncorrected'
                                 ) 
 
         db_destd[8][i1] = math.mean(db_destd[1][i1],
@@ -261,14 +264,12 @@ for (var f3=0;f3<7;f3++)
 
 //-----------------------------------------------------------------
 // Eliminar valores fueras de la Desviacion Estantader
-for (var p3=1;p3<6;p3++)
+for (var p3=1;p3<7;p3++)
     {   for (var q3=0;q3<=45;q3++)
-                {   if (db_destdres[p3][q3] < db_destd[10][q3] ||
-                        db_destdres[p3][q3] > db_destd[11][q3] )
+                {   if (db_destdres[p3][q3] < db_destd[10][q3] || db_destdres[p3][q3] > db_destd[11][q3]  )
                         {
                             db_destdres[p3][q3]= 0
                         }
-                    
                 }
     }
 // Eliminar valores fueras de la Desviacion Estantader
@@ -292,7 +293,7 @@ db_destdres[7][0]="SUMA"
 
 //-----------------------------------------------------------------
 // Comentarios
-db_destdres[8][0] = math.mean(  db_destdres[7][1],
+db_destdres[8][0] = math.mean( db_destdres[7][1],
                                 db_destdres[7][2],
                                 db_destdres[7][3],
                                 db_destdres[7][4],
@@ -337,9 +338,10 @@ db_destdres[8][0] = math.mean(  db_destdres[7][1],
                                 db_destdres[7][43],
                                 db_destdres[7][44],
                                 db_destdres[7][45]
+                                
                                 ) 
 
-db_destdres[9][0] = math.std(  db_destdres[7][1],
+db_destdres[9][0] = math.std(   db_destdres[7][1],
                                 db_destdres[7][2],
                                 db_destdres[7][3],
                                 db_destdres[7][4],
@@ -384,6 +386,7 @@ db_destdres[9][0] = math.std(  db_destdres[7][1],
                                 db_destdres[7][43],
                                 db_destdres[7][44],
                                 db_destdres[7][45]
+                                
                                 ) 
                                 
 db_destdres[10][0] =db_destdres[8][0]-db_destdres[9][0]
@@ -397,6 +400,7 @@ db_destdres[11][0] =db_destdres[8][0]+db_destdres[9][0]
 
 for (var p4 =1;p4<46;p4++)
     {   if (db_destdres[7][p4] < db_destdres[10][0] 
+            
             ) 
             {
                 db_destdres[8][p4]= db_destdres[0][p4]
@@ -404,13 +408,13 @@ for (var p4 =1;p4<46;p4++)
     }
 
 //-----------------------------------------------------------------
-/*
+
 // Imprimir contenido del Array  db_destd (Desviacion Estandard)
 
  console.log("Desviacion Estandard")
 
  for (p = 0; p < pMax; p++) {
-    for (q = 0; q < 3; q++)
+    for (q = 35; q < 36; q++)
         process.stdout.write(db_destd[p][q] + '\t');
     {
         process.stdout.write('\n');
@@ -418,13 +422,13 @@ for (var p4 =1;p4<46;p4++)
 }
 // Imprimir contenido del Array  db_destd (Desviacion Estandard)
 //-----------------------------------------------------------------
-*/
+
 // Imprimir contenido del Array  db_destd (Desviacion Estandard)
 
 console.log("Desviacion Estandard Resultado")
 
  for (p = 0; p < 12 ; p++) {
-    for (q = 0; q < 11; q++)
+    for (q = 35; q < 36; q++)
         process.stdout.write(db_destdres[p][q] + '\t');
     {
         process.stdout.write('\n');
@@ -438,7 +442,7 @@ console.log("Desviacion Estandard Resultado Posibles")
  for (var p5=1;p5<46;p5++)
  {  if (db_destdres[8][p5]>0) 
         { for (var p6=0;p6 <6;p6++) 
-                {if (db[(db.length-1)][p6] == db_destdres[8][p5] )       
+                {if (db[(db.length-next)][p6] == db_destdres[8][p5] )       
                     {
                         console.log(db_destdres[8][p5] + " ERROR" )          
                     }
@@ -457,10 +461,15 @@ for (var p5=1;p5<46;p5++)
       console.log(db_destdres[8][p5] + " CHECK" )          
                     }
  }
-                 
-                  
-        
-
+         
+         
+console.log(db_destdres[11][0])
+console.log(db_destdres[10][0])                          
+      
+console.log(db.length-back)
+console.log(db[db.length-back][0])
+console.log(db.length-next)
+console.log(db[db.length-next][0])  
 
 
 
