@@ -1,4 +1,5 @@
 "use strict";
+//113
 
 //-----------------------------------------------------------------
 // Leer archivo de texto
@@ -16,7 +17,7 @@ var fileContents = fs.readFileSync('database.txt')
 var lines = fileContents.toString().split('\r\n')
 
 // Imprimir longuitud de Arreglo
-util.print(lines.length+'\n');
+//util.print(lines.length+'\n');
 
 
 
@@ -24,10 +25,6 @@ for (var i = 0; i < lines.length; i++)
     {
         db.push(lines[i].toString().split(','))
     }
-
-util.print(db.length+'\n');
-
-
 
 // Leer archivo de texto
 //-----------------------------------------------------------------
@@ -106,8 +103,7 @@ for(var num=1;num<46;num++)
 //Buscar e indexar coincidencias Array de 45 x 45 con header
 //-----------------------------------------------------------------
 
-
-
+console.log(db[(db.length-2)][0])
 //-----------------------------------------------------------------
 //Imprimir Array de 45 x 45 con header
 
@@ -408,6 +404,7 @@ for (var p4 =1;p4<46;p4++)
     }
 
 //-----------------------------------------------------------------
+/*
 // Imprimir contenido del Array  db_destd (Desviacion Estandard)
 
  console.log("Desviacion Estandard")
@@ -421,6 +418,7 @@ for (var p4 =1;p4<46;p4++)
 }
 // Imprimir contenido del Array  db_destd (Desviacion Estandard)
 //-----------------------------------------------------------------
+*/
 // Imprimir contenido del Array  db_destd (Desviacion Estandard)
 
 console.log("Desviacion Estandard Resultado")
