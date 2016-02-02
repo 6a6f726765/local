@@ -32,8 +32,11 @@ for (var i = 0; i < lines.length; i++)
 // Leer archivo de texto
 //-----------------------------------------------------------------
 
-for (next ;next < db.length ;next++ ) 
-{
+
+
+//for (next ;next < db.length ;next++ ) {
+    
+    
 
 //-----------------------------------------------------------------
 //----Testing Fila y Columna
@@ -62,12 +65,14 @@ for (x=0;x<iMax;x++)
  {db1[x][y]=0; }}
 
 
+//----Crear HEADER Array de 45 x 45
+
 for (p = 0; p < 46; p++)
 {
     db1[0][p]=p
     db1[p][0]=p
 }
-
+//----Crear HEADER Array de 45 x 45
 
 //-----Crear Array de 45 x 45
 //-----------------------------------------------------------------
@@ -155,8 +160,8 @@ fs.unlinkSync(filePath);
 //----  Desviacion Estandard HORIZONTAL 
 
 // db_stdev == Desviacion Estandard 
-var pMax = 12;
-var qMax = 46;
+const pMax = 12;
+const qMax = 50;
 var p; var q;
 
 var db_stdev = []
@@ -165,24 +170,33 @@ for (p=0;p<pMax;p++)
  for (q=0;q<qMax;q++)
  {db_stdev[p][q]=0; }}
 
-// db_stdev_line == Desviacion Estandard Resultado 
+// db_stdev_line == Desviacion Estandard Resultado  VERTICAL
 
+var p11; var q11;
 
 var db_stdev_line = []
-for (p=0;p<pMax;p++)
-{ db_stdev_line[p]=[]
- for (q=0;q<qMax;q++)
- {db_stdev_line[p][q]=0; }}
+for (p11=0;p11<pMax;p11++)
+{ db_stdev_line[p11]=[]
+ for (q11=0;q11<qMax;q11++)
+ {db_stdev_line[p11][q11]=0; }}
+ 
+ 
  
 // db_STDEV_XLINE == Desviacion Estandard HORIZONTAL 
 
+ var p10; var q10;
  
  var db_stdev_xline = []
-for (p=0;p<pMax;p++)
-{ db_stdev_xline[p]=[]
- for (q=0;q<qMax;q++)
- {db_stdev_line[p][q]=0; }}
+for (p10=0;p10<pMax;p10++)
+{ db_stdev_xline[p10]=[]
+ for (q10=0;q10<qMax;q10++)
+ {db_stdev_xline[p10][q10]=0; }}
  
+ 
+ console.log(db_stdev_xline[7][0])
+ 
+ console.log(db_stdev_line[7][0])
+
  
 
 
@@ -207,30 +221,6 @@ for(var num=0;num<46;num++)
     }
 //    
 //-----------------------------------------------------------------
-// Pasar los valores de la DB1 a la db_STDEV_XLINE == Desviacion Estandard HORIZONTAL 
-
-
-for(var num=0;num<46;num++)
-    {   for (var num2=0;num2<6;num2++)
-        { if (db1[0][num] == db[(db.length-back)][num2])
-               for (var i =0;i<46;i++)
-             {
-               db_stdev_xline[num2+1][i] = db1[num][i]
-             }
-          else if (db1[0][0] == 0)
-               for (var i =0;i<46;i++)
-             {
-               db_stdev_xline[0][i] = db1[0][i]
-             }
-
-        }
-
-    }
-//    
-//-----------------------------------------------------------------
-
-
-
 
 
 //-----------------------------------------------------------------
@@ -294,6 +284,8 @@ db_stdev[11][0]="MAX "
 //-----------------------------------------------------------------
 // Pasar datos de db_stdev a db_stdev_line VERTICAL
 
+console.log(db_stdev_line[7][1])
+
 for (var f3=0;f3<7;f3++)
     {   for (var c3=0;c3<qMax;c3++)
             {
@@ -302,11 +294,23 @@ for (var f3=0;f3<7;f3++)
     }
 // Pasar datos de db_stdev a db_stdev_line 
 //-----------------------------------------------------------------
+//-----------------------------------------------------------------
+// Pasar datos de db_stdev a db_stdev_line HORIZONTAL
+
+for (var f7=0;f7<7;f7++)
+    {   for (var c7=0;c7<qMax;c7++)
+            {
+                db_stdev_xline[f7][c7] = db_stdev[f7][c7]
+            }
+    }
+// Pasar datos de db_stdev a db_stdev_line 
+//-----------------------------------------------------------------
+
 
 
 
 //-----------------------------------------------------------------
-// Eliminar valores fueras de la Desviacion Estantader HORIZONTAL
+// Eliminar valores fueras de la Desviacion Estantard Vertical
 for (var p3=1;p3<7;p3++)
     {   for (var q3=0;q3<=45;q3++)
                 {   if (db_stdev_line[p3][q3] < db_stdev[10][q3] || db_stdev_line[p3][q3] > db_stdev[11][q3]  )
@@ -444,6 +448,274 @@ db_stdev_line[11][0] =db_stdev_line[8][0]+db_stdev_line[9][0]
 // Calcular promedio y desviacion Stantadar db_stdev_line
 //-----------------------------------------------------------------
 
+
+
+//-----------------------------------------------------------------
+// Calcular promedio y desviacion Stantadar db_stdev_Xline
+
+         db_stdev_xline[0][47]="AVERAGE"
+         db_stdev_xline[0][48]="STDDEV.P"
+         
+for (var p7=1; p7< 7; p7++) 
+       {
+            
+         db_stdev_xline[p7][47] = math.mean( db_stdev[p7][1],
+                                            db_stdev[p7][2],
+                                            db_stdev[p7][3],
+                                            db_stdev[p7][4],
+                                            db_stdev[p7][5],
+                                            db_stdev[p7][6],
+                                            db_stdev[p7][7],
+                                            db_stdev[p7][8],
+                                            db_stdev[p7][9],
+                                            db_stdev[p7][10],
+                                            db_stdev[p7][11],
+                                            db_stdev[p7][12],
+                                            db_stdev[p7][13],
+                                            db_stdev[p7][14],
+                                            db_stdev[p7][15],
+                                            db_stdev[p7][16],
+                                            db_stdev[p7][17],
+                                            db_stdev[p7][18],
+                                            db_stdev[p7][19],
+                                            db_stdev[p7][20],
+                                            db_stdev[p7][21],
+                                            db_stdev[p7][22],
+                                            db_stdev[p7][23],
+                                            db_stdev[p7][24],
+                                            db_stdev[p7][25],
+                                            db_stdev[p7][26],
+                                            db_stdev[p7][27],
+                                            db_stdev[p7][28],
+                                            db_stdev[p7][29],
+                                            db_stdev[p7][30],
+                                            db_stdev[p7][31],
+                                            db_stdev[p7][32],
+                                            db_stdev[p7][33],
+                                            db_stdev[p7][34],
+                                            db_stdev[p7][35],
+                                            db_stdev[p7][36],
+                                            db_stdev[p7][37],
+                                            db_stdev[p7][38],
+                                            db_stdev[p7][39],
+                                            db_stdev[p7][40],
+                                            db_stdev[p7][41],
+                                            db_stdev[p7][42],
+                                            db_stdev[p7][43],
+                                            db_stdev[p7][44],
+                                            db_stdev[p7][45]
+                                            
+                                            ) 
+
+            db_stdev_xline[p7][48] = math.std
+                                          ( db_stdev[p7][1],
+                                            db_stdev[p7][2],
+                                            db_stdev[p7][3],
+                                            db_stdev[p7][4],
+                                            db_stdev[p7][5],
+                                            db_stdev[p7][6],
+                                            db_stdev[p7][7],
+                                            db_stdev[p7][8],
+                                            db_stdev[p7][9],
+                                            db_stdev[p7][10],
+                                            db_stdev[p7][11],
+                                            db_stdev[p7][12],
+                                            db_stdev[p7][13],
+                                            db_stdev[p7][14],
+                                            db_stdev[p7][15],
+                                            db_stdev[p7][16],
+                                            db_stdev[p7][17],
+                                            db_stdev[p7][18],
+                                            db_stdev[p7][19],
+                                            db_stdev[p7][20],
+                                            db_stdev[p7][21],
+                                            db_stdev[p7][22],
+                                            db_stdev[p7][23],
+                                            db_stdev[p7][24],
+                                            db_stdev[p7][25],
+                                            db_stdev[p7][26],
+                                            db_stdev[p7][27],
+                                            db_stdev[p7][28],
+                                            db_stdev[p7][29],
+                                            db_stdev[p7][30],
+                                            db_stdev[p7][31],
+                                            db_stdev[p7][32],
+                                            db_stdev[p7][33],
+                                            db_stdev[p7][34],
+                                            db_stdev[p7][35],
+                                            db_stdev[p7][36],
+                                            db_stdev[p7][37],
+                                            db_stdev[p7][38],
+                                            db_stdev[p7][39],
+                                            db_stdev[p7][40],
+                                            db_stdev[p7][41],
+                                            db_stdev[p7][42],
+                                            db_stdev[p7][43],
+                                            db_stdev[p7][44],
+                                            db_stdev[p7][45]
+                                            )
+                                            
+                                            
+        db_stdev_xline[p7][49] =(db_stdev_xline[p7][47]-db_stdev_xline[p7][48])                                  
+             
+            
+        }
+
+// Calcular promedio y desviacion Stantadar db_stdev_Xline
+//-----------------------------------------------------------------
+
+
+
+
+
+//-----------------------------------------------------------------
+// Eliminar valores fueras de la Desviacion Estandar HORIZONTAL
+for (var p8=1;p8<7;p8++)
+    {   for (var q8=1;q8<=45;q8++)
+                {   if (db_stdev_xline[p8][49] < db_stdev_xline[p8][q8] )
+                        {
+                            db_stdev_xline[p8][q8]= 0
+                        }
+                }
+    }
+// Eliminar valores fueras de la Desviacion Estandar HORIZONTAL
+//-----------------------------------------------------------------
+
+
+//-----------------------------------------------------------------
+// Sumar valores fueras de la Desviacion Estandar HORIZONTAL
+for (var f6 =1;f6<7;f6++) 
+        {   for(var c6 =1;c6<46;c6++)
+            {
+                db_stdev_xline[7][c6] += db_stdev_xline[f6][c6]
+            }
+}
+
+db_stdev_xline[7][0]="SUMA"
+
+
+//-----------------------------------------------------------------
+
+// Calcular promedio y desviacion Stantadar db_stdev_Xline SUMA
+
+db_stdev_xline[8][0]="AVERAGE"         
+db_stdev_xline[9][0]="STDEV.P" 
+        
+
+db_stdev_xline[8][1] = math.mean(           db_stdev_xline[7][1],
+                                            db_stdev_xline[7][2],
+                                            db_stdev_xline[7][3],
+                                            db_stdev_xline[7][4],
+                                            db_stdev_xline[7][5],
+                                            db_stdev_xline[7][6],
+                                            db_stdev_xline[7][7],
+                                            db_stdev_xline[7][8],
+                                            db_stdev_xline[7][9],
+                                            db_stdev_xline[7][10],
+                                            db_stdev_xline[7][11],
+                                            db_stdev_xline[7][12],
+                                            db_stdev_xline[7][13],
+                                            db_stdev_xline[7][14],
+                                            db_stdev_xline[7][15],
+                                            db_stdev_xline[7][16],
+                                            db_stdev_xline[7][17],
+                                            db_stdev_xline[7][18],
+                                            db_stdev_xline[7][19],
+                                            db_stdev_xline[7][20],
+                                            db_stdev_xline[7][21],
+                                            db_stdev_xline[7][22],
+                                            db_stdev_xline[7][23],
+                                            db_stdev_xline[7][24],
+                                            db_stdev_xline[7][25],
+                                            db_stdev_xline[7][26],
+                                            db_stdev_xline[7][27],
+                                            db_stdev_xline[7][28],
+                                            db_stdev_xline[7][29],
+                                            db_stdev_xline[7][30],
+                                            db_stdev_xline[7][31],
+                                            db_stdev_xline[7][32],
+                                            db_stdev_xline[7][33],
+                                            db_stdev_xline[7][34],
+                                            db_stdev_xline[7][35],
+                                            db_stdev_xline[7][36],
+                                            db_stdev_xline[7][37],
+                                            db_stdev_xline[7][38],
+                                            db_stdev_xline[7][39],
+                                            db_stdev_xline[7][40],
+                                            db_stdev_xline[7][41],
+                                            db_stdev_xline[7][42],
+                                            db_stdev_xline[7][43],
+                                            db_stdev_xline[7][44],
+                                            db_stdev_xline[7][45]
+                                            
+                                            ) 
+
+ db_stdev_xline[9][1] = math.std          (  db_stdev_xline[7][1],
+                                            db_stdev_xline[7][2],
+                                            db_stdev_xline[7][3],
+                                            db_stdev_xline[7][4],
+                                            db_stdev_xline[7][5],
+                                            db_stdev_xline[7][6],
+                                            db_stdev_xline[7][7],
+                                            db_stdev_xline[7][8],
+                                            db_stdev_xline[7][9],
+                                            db_stdev_xline[7][10],
+                                            db_stdev_xline[7][11],
+                                            db_stdev_xline[7][12],
+                                            db_stdev_xline[7][13],
+                                            db_stdev_xline[7][14],
+                                            db_stdev_xline[7][15],
+                                            db_stdev_xline[7][16],
+                                            db_stdev_xline[7][17],
+                                            db_stdev_xline[7][18],
+                                            db_stdev_xline[7][19],
+                                            db_stdev_xline[7][20],
+                                            db_stdev_xline[7][21],
+                                            db_stdev_xline[7][22],
+                                            db_stdev_xline[7][23],
+                                            db_stdev_xline[7][24],
+                                            db_stdev_xline[7][25],
+                                            db_stdev_xline[7][26],
+                                            db_stdev_xline[7][27],
+                                            db_stdev_xline[7][28],
+                                            db_stdev_xline[7][29],
+                                            db_stdev_xline[7][30],
+                                            db_stdev_xline[7][31],
+                                            db_stdev_xline[7][32],
+                                            db_stdev_xline[7][33],
+                                            db_stdev_xline[7][34],
+                                            db_stdev_xline[7][35],
+                                            db_stdev_xline[7][36],
+                                            db_stdev_xline[7][37],
+                                            db_stdev_xline[7][38],
+                                            db_stdev_xline[7][39],
+                                            db_stdev_xline[7][40],
+                                            db_stdev_xline[7][41],
+                                            db_stdev_xline[7][42],
+                                            db_stdev_xline[7][43],
+                                            db_stdev_xline[7][44],
+                                            db_stdev_xline[7][45]
+                                            
+                                            )
+                                            
+                                            
+      db_stdev_xline[10][1]= db_stdev_xline[8][1]-db_stdev_xline[9][1]          
+      db_stdev_xline[11][1]= db_stdev_xline[10][1]+db_stdev_xline[8][1]          
+      
+             
+      db_stdev_xline[8][0]= "AVERAGE  "         
+      db_stdev_xline[9][0]= "STDEV.P  " 
+      db_stdev_xline[10][0]="AVE-STDEV" 
+      db_stdev_xline[11][0]="MIN-STD+AVE"
+        
+
+// Calcular promedio y desviacion Stantadar db_stdev_Xline SUMA
+//-----------------------------------------------------------------
+
+
+
+
+
 //-----------------------------------------------------------------
 // COMENTARIOS
 
@@ -464,8 +736,8 @@ for (var p4 =1;p4<46;p4++)
 
  console.log("Desviacion Estandard")
 
- for (p = 0; p < pMax; p++) {
-    for (q = 0; q < 6; q++)
+ for (p = 0; p < 12; p++) {
+    for (q = 0; q < 3; q++)
         process.stdout.write(db_stdev[p][q] + '\t');
     {
         process.stdout.write('\n');
@@ -483,7 +755,7 @@ for (var p4 =1;p4<46;p4++)
 console.log("Desviacion Estandard Resultado VERTICAL")
 
  for (p = 0; p < 12 ; p++) {
-    for (q = 0; q < 6; q++)
+    for (q = 0; q < 3; q++)
         process.stdout.write(db_stdev_line[p][q] + '\t');
     {
         process.stdout.write('\n');
@@ -500,7 +772,7 @@ console.log("Desviacion Estandard Resultado VERTICAL")
 console.log("Desviacion Estandard Resultado HORIZONTAL")
 
  for (p = 0; p < 12 ; p++) {
-    for (q = 0; q < 6; q++)
+    for (q = 0; q < 3; q++)
         process.stdout.write(db_stdev_xline[p][q] + '\t');
     {
         process.stdout.write('\n');
@@ -608,4 +880,4 @@ fs.writeFile(filePath, 'Write text to file, overwrite all.', function(err) {
 //Escribir archivo con ruta universal
 //-----------------------------------------------------------------
 
-}
+//}
