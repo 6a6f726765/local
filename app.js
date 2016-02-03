@@ -1,5 +1,5 @@
 "use strict";
-//1.30
+//1.50
 
 //-----------------------------------------------------------------
 // Leer archivo de texto
@@ -7,8 +7,10 @@
 var util = require('util');
 const fs = require('fs');
 const math = require('mathjs')
-var next = 1 // Numero Menor
+const stats = require("stats-lite")
+var next = 9 // Numero Menor
 var back = next+1 // Numero Mayor 
+
 
 
 //fs.unlinkSync('/Users/jorge/Node/project/LOCAL/PQRST/45x45.txt');
@@ -34,7 +36,7 @@ for (var i = 0; i < lines.length; i++)
 
 
 
-for (next ;next < db.length ;next++ ) {
+//for (next ;next < db.length ;next++ ) {
     
     
 
@@ -548,10 +550,12 @@ for (var p7=1; p7< 7; p7++)
                                             )
                                             
                                             
-        db_stdev_xline[p7][49] =(db_stdev_xline[p7][47]-db_stdev_xline[p7][48])                                  
+db_stdev_xline[p7][49] =(db_stdev_xline[p7][47]-db_stdev_xline[p7][48])                                  
              
             
         }
+        
+        
 
 // Calcular promedio y desviacion Stantadar db_stdev_Xline
 //-----------------------------------------------------------------
@@ -588,6 +592,14 @@ db_stdev_xline[7][0]="SUMA"
 
 //-----------------------------------------------------------------
 
+ //
+
+
+ 
+ //  
+
+//-----------------------------------------------------------------
+
 // Calcular promedio y desviacion Stantadar db_stdev_Xline SUMA
 
 db_stdev_xline[8][0]="AVERAGE"         
@@ -595,7 +607,7 @@ db_stdev_xline[9][0]="STDEV.P"
 
 var count=0        
 for (var p12=1;p12<46;p12++)
-    { if (db_stdev_xline[7][p12]!=0)
+    { if (db_stdev_xline[7][p12]>0)
             {
                 count+=1
             }
@@ -612,60 +624,31 @@ for (var p12=1;p12<46;p12++)
 
 db_stdev_xline[8][1] = suma/count
 
-db_stdev_xline[9][1] = math.std        (  
-                                           [
-                                            db_stdev_xline[7][1],
-                                            db_stdev_xline[7][2],
-                                            db_stdev_xline[7][3],
-                                            db_stdev_xline[7][4],
-                                            db_stdev_xline[7][5],
-                                            db_stdev_xline[7][6],
-                                            db_stdev_xline[7][7],
-                                            db_stdev_xline[7][8],
-                                            db_stdev_xline[7][9],
-                                            db_stdev_xline[7][10],
-                                            db_stdev_xline[7][11],
-                                            db_stdev_xline[7][12],
-                                            db_stdev_xline[7][13],
-                                            db_stdev_xline[7][14],
-                                            db_stdev_xline[7][15],
-                                            db_stdev_xline[7][16],
-                                            db_stdev_xline[7][17],
-                                            db_stdev_xline[7][18],
-                                            db_stdev_xline[7][19],
-                                            db_stdev_xline[7][20],
-                                            db_stdev_xline[7][21],
-                                            db_stdev_xline[7][22],
-                                            db_stdev_xline[7][23],
-                                            db_stdev_xline[7][24],
-                                            db_stdev_xline[7][25],
-                                            db_stdev_xline[7][26],
-                                            db_stdev_xline[7][27],
-                                            db_stdev_xline[7][28],
-                                            db_stdev_xline[7][29],
-                                            db_stdev_xline[7][30],
-                                            db_stdev_xline[7][31],
-                                            db_stdev_xline[7][32],
-                                            db_stdev_xline[7][33],
-                                            db_stdev_xline[7][34],
-                                            db_stdev_xline[7][35],
-                                            db_stdev_xline[7][36],
-                                            db_stdev_xline[7][37],
-                                            db_stdev_xline[7][38],
-                                            db_stdev_xline[7][39],
-                                            db_stdev_xline[7][40],
-                                            db_stdev_xline[7][41],
-                                            db_stdev_xline[7][42],
-                                            db_stdev_xline[7][43],
-                                            db_stdev_xline[7][44],
-                                            db_stdev_xline[7][45]
-                                            
-                                            ],
-                                             //'biased'
-                                             'uncorrected'
-                                             )
-                                            
-                                            
+
+let calculate_db_stdev_xline= [45]
+      
+for (var x0 =1;x0<46;x0++)
+{ if (db_stdev_xline[7][x0]>0)
+    {
+        calculate_db_stdev_xline[x0-1] =db_stdev_xline[7][x0] 
+    }
+  else
+  {
+        calculate_db_stdev_xline[x0-1]=null
+  }   
+}      
+
+  
+for (var x0 =1;x0<46;x0++)
+{
+    console.log(calculate_db_stdev_xline[x0-1])
+    
+}   
+
+db_stdev_xline[9][1]=stats.stdev(calculate_db_stdev_xline)
+ 
+
+                                    
       db_stdev_xline[10][1]= db_stdev_xline[8][1]-db_stdev_xline[9][1]          
       db_stdev_xline[11][1]= db_stdev_xline[10][1]+db_stdev_xline[8][1]          
       
@@ -674,19 +657,17 @@ db_stdev_xline[9][1] = math.std        (
       db_stdev_xline[9][0]= "STDEV.P  " 
       db_stdev_xline[10][0]="AVE-STDEV" 
       db_stdev_xline[11][0]="MIN-STD+AVE"
-        
+      db_stdev_xline[12][0]="RESULTADO"  
 
 // Calcular promedio y desviacion Stantadar db_stdev_Xline SUMA
 //-----------------------------------------------------------------
 
 //-----------------------------------------------------------------
 // Calcular RESULTADO de la desviacion Stantadar db_stdev_Xline
- 
 
- 
  for (var p13=1;p13<46;p13++)     
         { if (db_stdev_xline[7][p13]!=0)
-                {   if (db_stdev_xline[7][p13]<db_stdev_xline[11][1])
+                {   if (db_stdev_xline[7][p13]<db_stdev_xline[10][1])
                         {
                             db_stdev_xline[12][p13]=db_stdev_xline[0][p13]
                         }    
@@ -712,7 +693,7 @@ for (var p4 =1;p4<46;p4++)
     }
 // COMENTARIOS
 //-----------------------------------------------------------------
-/*
+
 //-----------------------------------------------------------------
 
 // Imprimir contenido del Array  db_stdev (Desviacion Estandard)
@@ -729,7 +710,6 @@ for (var p4 =1;p4<46;p4++)
 
 // Imprimir contenido del Array  db_stdev (Desviacion Estandard)
 //-----------------------------------------------------------------
-
 
 
 //-----------------------------------------------------------------
@@ -766,7 +746,7 @@ console.log("Desviacion Estandard Resultado HORIZONTAL")
 // Imprimir contenido del Array  db_stdev_xline (Desviacion Estandard Horizontal)
 //-----------------------------------------------------------------
 
-*/
+
 
 
 //console.log("Desviacion Estandard Resultado Posibles")
@@ -790,20 +770,22 @@ fs.appendFileSync('error1.txt',db.length-next+'\n')
  }
  
  
- fs.appendFileSync('error2.txt',db.length-next+'\n')
+// fs.appendFileSync('error2.txt',db.length-next+'\n')
+console.log(db.length-next)
  for (var p14=1;p14<46;p14++)
  {  if (db_stdev_xline[12][p14]>0) 
-        {   for (var p15=0;p15 <6;p15++) 
+        {   for (var p15=0;p15 <7;p15++) 
                 {   if (db[(db.length-next)][p15] == db_stdev_xline[12][p14] )       
                         {
                             console.log(db_stdev_xline[12][p14] + " ERROR" )   
-                            fs.appendFileSync('error2.txt',db_stdev_xline[12][p14] + " ERROR"+'\n')  
+                            //fs.appendFileSync('error2.txt',db_stdev_xline[12][p14] + " ERROR"+'\n')  
+                            fs.appendFileSync('error2.txt',db.length-next + " ERROR"+'\n')
                         }
                 
                 }
                 
          console.log(db_stdev_xline[12][p14] + " CHECK" ) 
-                                    
+                                   
         }
             
  }
@@ -883,4 +865,24 @@ fs.writeFile(filePath, 'Write text to file, overwrite all.', function(err) {
 //Escribir archivo con ruta universal
 //-----------------------------------------------------------------
 
-}
+/*
+//-----------------------------------------------------------------
+//CREAR ARRAY EN UNA FUNCION
+
+exports.size = function (x) {
+  var s = [];
+
+  while (Array.isArray(x)) {
+    s.push(x.length);
+    x = x[0];
+  }
+
+  return s;
+};
+//CREAR ARRAY EN UNA FUNCION
+//-----------------------------------------------------------------
+*/
+
+
+
+//}
