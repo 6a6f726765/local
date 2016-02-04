@@ -1,5 +1,5 @@
 "use strict";
-//1.50
+//1.60
 
 //-----------------------------------------------------------------
 // Leer archivo de texto
@@ -8,8 +8,6 @@ var util = require('util');
 const fs = require('fs');
 const math = require('mathjs')
 const stats = require("stats-lite")
-var next = 9 // Numero Menor
-var back = next+1 // Numero Mayor 
 
 
 
@@ -34,11 +32,12 @@ for (var i = 0; i < lines.length; i++)
 // Leer archivo de texto
 //-----------------------------------------------------------------
 
+var next = 4 // Numero Menor
 
 
-//for (next ;next < db.length ;next++ ) {
+for (next ;next < db.length ;next++ ) {
     
-    
+var back = next+1    
 
 //-----------------------------------------------------------------
 //----Testing Fila y Columna
@@ -156,7 +155,7 @@ fs.unlinkSync(filePath);
 
 
 //-----------------------------------------------------------------
-//----Crear Array de 6 x 45 
+//----Crear Array de 15 x 45 
 //----  Desviacion Estandard 
 //----  Desviacion Estandard Resultado VERTICAL  
 //----  Desviacion Estandard HORIZONTAL 
@@ -625,6 +624,8 @@ for (var p12=1;p12<46;p12++)
 db_stdev_xline[8][1] = suma/count
 
 
+
+
 let calculate_db_stdev_xline= [45]
       
 for (var x0 =1;x0<46;x0++)
@@ -638,19 +639,11 @@ for (var x0 =1;x0<46;x0++)
   }   
 }      
 
-  
-for (var x0 =1;x0<46;x0++)
-{
-    console.log(calculate_db_stdev_xline[x0-1])
-    
-}   
-
 db_stdev_xline[9][1]=stats.stdev(calculate_db_stdev_xline)
  
 
-                                    
-      db_stdev_xline[10][1]= db_stdev_xline[8][1]-db_stdev_xline[9][1]          
-      db_stdev_xline[11][1]= db_stdev_xline[10][1]+db_stdev_xline[8][1]          
+db_stdev_xline[10][1]= db_stdev_xline[8][1]-db_stdev_xline[9][1]          
+db_stdev_xline[11][1]= db_stdev_xline[10][1]+db_stdev_xline[8][1]          
       
              
       db_stdev_xline[8][0]= "AVERAGE  "         
@@ -693,7 +686,7 @@ for (var p4 =1;p4<46;p4++)
     }
 // COMENTARIOS
 //-----------------------------------------------------------------
-
+/*
 //-----------------------------------------------------------------
 
 // Imprimir contenido del Array  db_stdev (Desviacion Estandard)
@@ -745,7 +738,7 @@ console.log("Desviacion Estandard Resultado HORIZONTAL")
 
 // Imprimir contenido del Array  db_stdev_xline (Desviacion Estandard Horizontal)
 //-----------------------------------------------------------------
-
+*/
 
 
 
@@ -884,5 +877,4 @@ exports.size = function (x) {
 */
 
 
-
-//}
+}
