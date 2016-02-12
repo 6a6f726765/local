@@ -1,5 +1,5 @@
 "use strict";
-//1.60
+//1.80
 
 //-----------------------------------------------------------------
 // Leer archivo de texto
@@ -9,7 +9,7 @@ const fs = require('fs');
 const math = require('mathjs')
 const stats = require("stats-lite")
 
-
+fs.appendFileSync('log.txt',new Date()+ ' START' + '\n')
 
 //fs.unlinkSync('/Users/jorge/Node/project/LOCAL/PQRST/45x45.txt');
 //console.log('successfully deleted 45x45.txt');
@@ -32,12 +32,14 @@ for (var i = 0; i < lines.length; i++)
 // Leer archivo de texto
 //-----------------------------------------------------------------
 
-var next = 4 // Numero Menor
+//var next = (db.length-13) // Numero Menor
+var next = 2
 
-
-for (next ;next < db.length ;next++ ) {
+//for (next ;next < db.length ;next++ ) {
+//for (next ;next < 13;next++ ) {
     
 var back = next+1    
+
 
 //-----------------------------------------------------------------
 //----Testing Fila y Columna
@@ -68,10 +70,10 @@ for (x=0;x<iMax;x++)
 
 //----Crear HEADER Array de 45 x 45
 
-for (p = 0; p < 46; p++)
+for (let p17 = 0; p17 < 46; p17++)
 {
-    db1[0][p]=p
-    db1[p][0]=p
+    db1[0][p17]=p17
+    db1[p17][0]=p17
 }
 //----Crear HEADER Array de 45 x 45
 
@@ -79,28 +81,23 @@ for (p = 0; p < 46; p++)
 //-----------------------------------------------------------------
 
 
-
-var p; var q;
-
-//-----------------------------------------------------------------
-/*
-  for (p=0;p<(db.length-1);p++)
-    {   for (q=0;q<5;q++)
-        {
-            process.stdout.write(db[p][q])
-        }
-    }
-*/
 //-----------------------------------------------------------------
 //Buscar e indexar coincidencias Array de 45 x 45 con header
  
+var p18; var q18; 
+ 
+ //console.log(((db.length-back)-1000))
+ //let bloque = 0;
+ //let inicio = ((db.length-back)-bloque);
+ 
+ 
 for(var num=1;num<46;num++)
-{   for (p=0;p<(db.length-back);p++)
-    {   for (q=0;q<6;q++)
-        {   if (num== db[p][q] )
-            {   for (var i =0;i<6;i++)
+{   for (p18=0;p18<db.length;p18++)
+    {   for (q18=0;q18<7;q18++)
+        {   if (num== db[p18][q18] )
+            {   for (var i =0;i<7;i++)
                 {   for (var num2=1;num2<46;num2++)
-                    {   if (num2==db[p+1][i])
+                    {   if (num2==db[p18+1][i])
                         {
                            db1[num][num2]+= 1
                         }
@@ -115,25 +112,27 @@ for(var num=1;num<46;num++)
 
 //-----------------------------------------------------------------
 //Imprimir Array de 45 x 45 con header
-/*
-var long45 = 11;
-       
+//var filePath = "/Users/jorge/Node/inception/local/45x45.txt" ;
+//fs.unlinkSync(filePath);
+
 
 for (p = 0; p < 46; p++) 
-    {   for (q = 0; q < long45; q++)
-        process.stdout.write(db1[p][q] + '\t');
+    {   for (q = 0; q < 46; q++)
+        fs.appendFileSync('backlog.txt',db1[p][q] + '\t');
             {
-                process.stdout.write('\n');
+                fs.appendFileSync('backlog.txt','\n');
             }
 }
-*/
+
+  fs.appendFileSync('backlog.txt','\n');
+
 //Imprimir Array de 45 x 45 con header
 //-----------------------------------------------------------------
 
 
 //-----------------------------------------------------------------
 //Imprimir en archivo TXT Array de 45 x 45 con header
-
+/*
 var filePath = "/Users/jorge/Node/inception/local/45x45.txt" ;
 fs.unlinkSync(filePath);
 
@@ -145,7 +144,7 @@ fs.unlinkSync(filePath);
                 }
 
   }
-
+*/
 //Imprimir en archivo TXT Array de 45 x 45 con header
 //-----------------------------------------------------------------
 
@@ -601,8 +600,6 @@ db_stdev_xline[7][0]="SUMA"
 
 // Calcular promedio y desviacion Stantadar db_stdev_Xline SUMA
 
-db_stdev_xline[8][0]="AVERAGE"         
-db_stdev_xline[9][0]="STDEV.P" 
 
 var count=0        
 for (var p12=1;p12<46;p12++)
@@ -642,25 +639,25 @@ for (var x0 =1;x0<46;x0++)
 db_stdev_xline[9][1]=stats.stdev(calculate_db_stdev_xline)
  
 
-db_stdev_xline[10][1]= db_stdev_xline[8][1]-db_stdev_xline[9][1]          
-db_stdev_xline[11][1]= db_stdev_xline[10][1]+db_stdev_xline[8][1]          
+db_stdev_xline[10][1]= db_stdev_xline[8][1]  - db_stdev_xline[9][1]          
+db_stdev_xline[11][1]= db_stdev_xline[8][1]  + db_stdev_xline[9][1]          
       
              
       db_stdev_xline[8][0]= "AVERAGE  "         
       db_stdev_xline[9][0]= "STDEV.P  " 
-      db_stdev_xline[10][0]="AVE-STDEV" 
-      db_stdev_xline[11][0]="MIN-STD+AVE"
+      db_stdev_xline[10][0]="MIN_STDEV" 
+      db_stdev_xline[11][0]="MAX_STDEV"
       db_stdev_xline[12][0]="RESULTADO"  
 
 // Calcular promedio y desviacion Stantadar db_stdev_Xline SUMA
 //-----------------------------------------------------------------
 
 //-----------------------------------------------------------------
-// Calcular RESULTADO de la desviacion Stantadar db_stdev_Xline
+// Calcular RESULTADO MAYOR de la desviacion Stantadar db_stdev_Xline
 
  for (var p13=1;p13<46;p13++)     
         { if (db_stdev_xline[7][p13]!=0)
-                {   if (db_stdev_xline[7][p13]<db_stdev_xline[10][1])
+                {   if (db_stdev_xline[7][p13]>db_stdev_xline[11][1])
                         {
                             db_stdev_xline[12][p13]=db_stdev_xline[0][p13]
                         }    
@@ -674,6 +671,29 @@ db_stdev_xline[11][1]= db_stdev_xline[10][1]+db_stdev_xline[8][1]
 
 
 //-----------------------------------------------------------------
+
+
+//-----------------------------------------------------------------
+// Calcular RESULTADO MENOR de la desviacion Stantadar db_stdev_Xline
+
+ for (var p13=1;p13<46;p13++)     
+        { if (db_stdev_xline[7][p13]!=0)
+                {   if (db_stdev_xline[7][p13]<db_stdev_xline[10][1])
+                        {
+                            db_stdev_xline[13][p13]=db_stdev_xline[0][p13]
+                        }    
+                }
+           else
+                {
+                 db_stdev_xline[13][p13]=0;   
+                }     
+        }
+
+
+
+//-----------------------------------------------------------------
+
+
 // COMENTARIOS
 
 for (var p4 =1;p4<46;p4++)
@@ -686,20 +706,21 @@ for (var p4 =1;p4<46;p4++)
     }
 // COMENTARIOS
 //-----------------------------------------------------------------
-/*
+
 //-----------------------------------------------------------------
 
 // Imprimir contenido del Array  db_stdev (Desviacion Estandard)
 
- console.log("Desviacion Estandard")
+ fs.appendFileSync('backlog.txt',"Desviacion Estandard" + '\n')
 
- for (p = 0; p < 13; p++) {
-    for (q = 0; q < 4; q++)
-        process.stdout.write(db_stdev[p][q] + '\t');
+ for (p = 0; p < 15; p++) {
+    for (q = 0; q < 50; q++)
+        fs.appendFileSync('backlog.txt',db_stdev[p][q] + '\t')
     {
-        process.stdout.write('\n');
+        fs.appendFileSync('backlog.txt','\n');
     }
 }
+fs.appendFileSync('backlog.txt','\n');
 
 // Imprimir contenido del Array  db_stdev (Desviacion Estandard)
 //-----------------------------------------------------------------
@@ -708,16 +729,16 @@ for (var p4 =1;p4<46;p4++)
 //-----------------------------------------------------------------
 // Imprimir contenido del Array  db_stdev_line (Desviacion Estandard)
 
-console.log("Desviacion Estandard Resultado VERTICAL")
+fs.appendFileSync('backlog.txt',"Desviacion Estandard Resultado VERTICAL" + '\n')
 
- for (p = 0; p < 13 ; p++) {
-    for (q = 0; q < 4; q++)
-        process.stdout.write(db_stdev_line[p][q] + '\t');
+ for (p = 0; p < 15 ; p++) {
+    for (q = 0; q < 50; q++)
+        fs.appendFileSync('backlog.txt',db_stdev_line[p][q] + '\t');
     {
-        process.stdout.write('\n');
+        fs.appendFileSync('backlog.txt','\n');
     }
 }
-
+  fs.appendFileSync('backlog.txt','\n');
 // Imprimir contenido del Array  db_stdev (Desviacion Estandard)
 //-----------------------------------------------------------------
 
@@ -725,63 +746,98 @@ console.log("Desviacion Estandard Resultado VERTICAL")
 //-----------------------------------------------------------------
 // Imprimir contenido del Array  db_stdev_xline (Desviacion Estandard Horizontal)
 
-console.log("Desviacion Estandard Resultado HORIZONTAL")
+fs.appendFileSync('backlog.txt',"Desviacion Estandard Resultado HORIZONTAL" + '\n')
 
- for (p = 0; p < 13 ; p++) {
-    for (q = 0; q < 4; q++)
-        process.stdout.write(db_stdev_xline[p][q] + '\t');
+ for (p = 0; p < 15 ; p++) {
+    for (q = 0; q < 50; q++)
+        fs.appendFileSync('backlog.txt',db_stdev_xline[p][q] + '\t');
     {
-        process.stdout.write('\n');
+        //process.stdout.write('\n');
+        fs.appendFileSync('backlog.txt','\n');
     }
 }
 
-
+  fs.appendFileSync('backlog.txt','\n');
 // Imprimir contenido del Array  db_stdev_xline (Desviacion Estandard Horizontal)
+//----------------------------------------------------------------
+
+
 //-----------------------------------------------------------------
-*/
+// IMPRIMI EL HEADER DE LA LINEA A EVALUAR
 
-
-
-//console.log("Desviacion Estandard Resultado Posibles")
 console.log(db.length-next)
-fs.appendFileSync('error1.txt',db.length-next+'\n')
+fs.appendFileSync('log2.txt',db.length-next+'\n')
+
+for (var p16=0;p16<7;p16++)
+        {
+           process.stdout.write(db[(db.length-next)][p16]+ '\t') 
+           fs.appendFileSync('log2.txt',db[(db.length-next)] [p16] + '\t') 
+                     
+        }
+process.stdout.write('\n')
+fs.appendFileSync('backlog.txt','\n')
+
+// IMPRIMI EL HEADER DE LA LINEA A EVALUAR
+//-----------------------------------------------------------------
+
+
  for (var p5=1;p5<46;p5++)
  {  if (db_stdev_line[8][p5]>0) 
         {   for (var p6=0;p6 <6;p6++) 
-                {   if (db[(db.length-next)][p6] == db_stdev_line[8][p5] )       
+                    {   if (db[(db.length-next)][p6] == db_stdev_line[8][p5] )       
                         {
-                            console.log(db_stdev_line[8][p5] + " ERROR" )   
-                            fs.appendFileSync('error1.txt',db_stdev_line[8][p5] + " ERROR"+'\n')  
-                        }
-                
-                }
-                
-         console.log(db_stdev_line[8][p5] + " CHECK" ) 
+                         process.stdout.write('MODE 1' + '\t' + (db.length-next)+ '\t'+ db_stdev_line[8][p5] + '\t' +"ERROR"+'\n')   
+                            fs.appendFileSync('log2.txt','MODE 1' + '\t' + (db.length-next)+ '\t'+ db_stdev_line[8][p5] + '\t' +"ERROR"+'\n')
+                        }    
+                                
+                     }
+                process.stdout.write('MODE 1' + '\t' + (db.length-next)+ '\t'+ db_stdev_line[8][p5] + '\t' + "CHECK"+'\n') 
+                fs.appendFileSync('log2.txt','MODE 1' + '\t' + (db.length-next)+ '\t'+ db_stdev_line[8][p5] + '\t' + "CHECK"+'\n')    
+       }                    
+  
+   }
                                     
-        }
-            
- }
+  
  
- 
-// fs.appendFileSync('error2.txt',db.length-next+'\n')
-console.log(db.length-next)
+//console.log(db.length-next)
  for (var p14=1;p14<46;p14++)
  {  if (db_stdev_xline[12][p14]>0) 
         {   for (var p15=0;p15 <7;p15++) 
                 {   if (db[(db.length-next)][p15] == db_stdev_xline[12][p14] )       
-                        {
-                            console.log(db_stdev_xline[12][p14] + " ERROR" )   
-                            //fs.appendFileSync('error2.txt',db_stdev_xline[12][p14] + " ERROR"+'\n')  
-                            fs.appendFileSync('error2.txt',db.length-next + " ERROR"+'\n')
+                        {   
+                            process.stdout.write('MODE 2' + '\t' + (db.length-next)+ '\t'+ db_stdev_xline[12][p14] + '\t' + "ERROR"+'\n')   
+                            fs.appendFileSync('log2.txt','MODE 2' + '\t' + (db.length-next)+ '\t'+ db_stdev_xline[12][p14] + '\t' + "ERROR"+'\n')
                         }
-                
+                       
                 }
                 
-         console.log(db_stdev_xline[12][p14] + " CHECK" ) 
-                                   
+                          process.stdout.write('MODE 2' + '\t' + (db.length-next)+ '\t'+ db_stdev_xline[12][p14] + '\t' + "CHECK"+'\n') 
+                          fs.appendFileSync('log2.txt','MODE 2' + '\t' + (db.length-next)+ '\t'+ db_stdev_xline[12][p14] + '\t' + "CHECK"+'\n') 
         }
             
  }
+ 
+ 
+ //console.log(db.length-next)
+ for (var p14=1;p14<46;p14++)
+ {  if (db_stdev_xline[13][p14]>0) 
+        {   for (var p15=0;p15 <7;p15++) 
+                {   if (db[(db.length-next)][p15] == db_stdev_xline[13][p14] )       
+                        {   
+                            process.stdout.write('MODE 3' + '\t' + (db.length-next)+ '\t' + db_stdev_xline[13][p14] +  '\t' + "ERROR"+'\n')   
+                            fs.appendFileSync('log2.txt','MODE 3' + '\t' + (db.length-next)+ '\t' + db_stdev_xline[13][p14] +  '\t' + "ERROR"+'\n')
+                        }
+                       
+                }
+                
+                          process.stdout.write('MODE 3' + '\t' + (db.length-next)+ '\t' + db_stdev_xline[13][p14] + '\t' + "CHECK"+'\n') 
+                          fs.appendFileSync('log2.txt','MODE 3' + '\t' + (db.length-next)+ '\t' + db_stdev_xline[13][p14] + '\t' + "CHECK"+'\n') 
+        }
+            
+ }
+ 
+ 
+ 
  
 /* 
 for (var p5=1;p5<46;p5++)
@@ -877,4 +933,11 @@ exports.size = function (x) {
 */
 
 
-}
+//}
+
+fs.appendFileSync('log.txt',new Date()+ ' END' + '\n')
+
+
+
+
+
