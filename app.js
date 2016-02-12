@@ -1,5 +1,9 @@
 "use strict";
+<<<<<<< HEAD
 //1.80
+=======
+//1.70
+>>>>>>> cc2f9d28b1ec25f99c86ef0d7db0281815ca469c
 
 //-----------------------------------------------------------------
 // Leer archivo de texto
@@ -32,8 +36,13 @@ for (var i = 0; i < lines.length; i++)
 // Leer archivo de texto
 //-----------------------------------------------------------------
 
+<<<<<<< HEAD
 //var next = (db.length-13) // Numero Menor
 var next = 2
+=======
+var next = 2 // Numero Menor
+
+>>>>>>> cc2f9d28b1ec25f99c86ef0d7db0281815ca469c
 
 //for (next ;next < db.length ;next++ ) {
 //for (next ;next < 13;next++ ) {
@@ -748,9 +757,15 @@ fs.appendFileSync('backlog.txt',"Desviacion Estandard Resultado VERTICAL" + '\n'
 
 fs.appendFileSync('backlog.txt',"Desviacion Estandard Resultado HORIZONTAL" + '\n')
 
+<<<<<<< HEAD
  for (p = 0; p < 15 ; p++) {
     for (q = 0; q < 50; q++)
         fs.appendFileSync('backlog.txt',db_stdev_xline[p][q] + '\t');
+=======
+ for (p = 0; p < 14 ; p++) {
+    for (q = 0; q < 4; q++)
+        process.stdout.write(db_stdev_xline[p][q] + '\t');
+>>>>>>> cc2f9d28b1ec25f99c86ef0d7db0281815ca469c
     {
         //process.stdout.write('\n');
         fs.appendFileSync('backlog.txt','\n');
@@ -761,10 +776,15 @@ fs.appendFileSync('backlog.txt',"Desviacion Estandard Resultado HORIZONTAL" + '\
 // Imprimir contenido del Array  db_stdev_xline (Desviacion Estandard Horizontal)
 //----------------------------------------------------------------
 
-
 //-----------------------------------------------------------------
 // IMPRIMI EL HEADER DE LA LINEA A EVALUAR
 
+<<<<<<< HEAD
+//-----------------------------------------------------------------
+// IMPRIMI EL HEADER DE LA LINEA A EVALUAR
+
+=======
+>>>>>>> cc2f9d28b1ec25f99c86ef0d7db0281815ca469c
 console.log(db.length-next)
 fs.appendFileSync('log2.txt',db.length-next+'\n')
 
@@ -775,7 +795,11 @@ for (var p16=0;p16<7;p16++)
                      
         }
 process.stdout.write('\n')
+<<<<<<< HEAD
 fs.appendFileSync('backlog.txt','\n')
+=======
+fs.appendFileSync('log2.txt','\n')
+>>>>>>> cc2f9d28b1ec25f99c86ef0d7db0281815ca469c
 
 // IMPRIMI EL HEADER DE LA LINEA A EVALUAR
 //-----------------------------------------------------------------
@@ -786,6 +810,7 @@ fs.appendFileSync('backlog.txt','\n')
         {   for (var p6=0;p6 <6;p6++) 
                     {   if (db[(db.length-next)][p6] == db_stdev_line[8][p5] )       
                         {
+<<<<<<< HEAD
                          process.stdout.write('MODE 1' + '\t' + (db.length-next)+ '\t'+ db_stdev_line[8][p5] + '\t' +"ERROR"+'\n')   
                             fs.appendFileSync('log2.txt','MODE 1' + '\t' + (db.length-next)+ '\t'+ db_stdev_line[8][p5] + '\t' +"ERROR"+'\n')
                         }    
@@ -793,6 +818,17 @@ fs.appendFileSync('backlog.txt','\n')
                      }
                 process.stdout.write('MODE 1' + '\t' + (db.length-next)+ '\t'+ db_stdev_line[8][p5] + '\t' + "CHECK"+'\n') 
                 fs.appendFileSync('log2.txt','MODE 1' + '\t' + (db.length-next)+ '\t'+ db_stdev_line[8][p5] + '\t' + "CHECK"+'\n')    
+=======
+                            console.log(db_stdev_line[8][p5] + " ERROR")   
+                            fs.appendFileSync('error2.txt',db.length-next +" ERROR"+'\n')
+                            fs.appendFileSync('log2.txt',db_stdev_line[8][p5] + " ERROR"+'\n')
+                        }    
+                                
+                     }
+                console.log(db_stdev_line[8][p5] + " CHECK") 
+                fs.appendFileSync('error2.txt',db.length-next +" CHECK"+'\n')
+                fs.appendFileSync('log2.txt',db_stdev_line[8][p5] + " CHECK"+'\n')    
+>>>>>>> cc2f9d28b1ec25f99c86ef0d7db0281815ca469c
        }                    
   
    }
@@ -805,14 +841,30 @@ fs.appendFileSync('backlog.txt','\n')
         {   for (var p15=0;p15 <7;p15++) 
                 {   if (db[(db.length-next)][p15] == db_stdev_xline[12][p14] )       
                         {   
+<<<<<<< HEAD
                             process.stdout.write('MODE 2' + '\t' + (db.length-next)+ '\t'+ db_stdev_xline[12][p14] + '\t' + "ERROR"+'\n')   
                             fs.appendFileSync('log2.txt','MODE 2' + '\t' + (db.length-next)+ '\t'+ db_stdev_xline[12][p14] + '\t' + "ERROR"+'\n')
+=======
+                            console.log(db_stdev_xline[12][p14] + " ERROR" )   
+                            fs.appendFileSync('error2.txt',db.length-next + " ERROR"+'\n')
+                            fs.appendFileSync('log2.txt',db_stdev_xline[12][p14] + " ERROR"+'\n')
+>>>>>>> cc2f9d28b1ec25f99c86ef0d7db0281815ca469c
                         }
                        
                 }
                 
+<<<<<<< HEAD
                           process.stdout.write('MODE 2' + '\t' + (db.length-next)+ '\t'+ db_stdev_xline[12][p14] + '\t' + "CHECK"+'\n') 
                           fs.appendFileSync('log2.txt','MODE 2' + '\t' + (db.length-next)+ '\t'+ db_stdev_xline[12][p14] + '\t' + "CHECK"+'\n') 
+=======
+                          console.log(db_stdev_xline[12][p14] + " CHECK" ) 
+                          fs.appendFileSync('error2.txt',db.length-next + " CHECK"+'\n')
+                          fs.appendFileSync('log2.txt',db_stdev_xline[12][p14] + " CHECK"+'\n') 
+                
+                      
+         
+                                                
+>>>>>>> cc2f9d28b1ec25f99c86ef0d7db0281815ca469c
         }
             
  }
@@ -824,14 +876,26 @@ fs.appendFileSync('backlog.txt','\n')
         {   for (var p15=0;p15 <7;p15++) 
                 {   if (db[(db.length-next)][p15] == db_stdev_xline[13][p14] )       
                         {   
+<<<<<<< HEAD
                             process.stdout.write('MODE 3' + '\t' + (db.length-next)+ '\t' + db_stdev_xline[13][p14] +  '\t' + "ERROR"+'\n')   
                             fs.appendFileSync('log2.txt','MODE 3' + '\t' + (db.length-next)+ '\t' + db_stdev_xline[13][p14] +  '\t' + "ERROR"+'\n')
+=======
+                            console.log(db_stdev_xline[13][p14] + " ERROR" )   
+                            fs.appendFileSync('error2.txt',db.length-next + " ERROR"+'\n')
+                            fs.appendFileSync('log2.txt',db_stdev_xline[13][p14] + " ERROR"+'\n')
+>>>>>>> cc2f9d28b1ec25f99c86ef0d7db0281815ca469c
                         }
                        
                 }
                 
+<<<<<<< HEAD
                           process.stdout.write('MODE 3' + '\t' + (db.length-next)+ '\t' + db_stdev_xline[13][p14] + '\t' + "CHECK"+'\n') 
                           fs.appendFileSync('log2.txt','MODE 3' + '\t' + (db.length-next)+ '\t' + db_stdev_xline[13][p14] + '\t' + "CHECK"+'\n') 
+=======
+                          console.log(db_stdev_xline[13][p14] + " CHECK" ) 
+                          fs.appendFileSync('error2.txt',db.length-next + " CHECK"+'\n')
+                          fs.appendFileSync('log2.txt',db_stdev_xline[13][p14] + " CHECK"+'\n') 
+>>>>>>> cc2f9d28b1ec25f99c86ef0d7db0281815ca469c
         }
             
  }
@@ -933,6 +997,7 @@ exports.size = function (x) {
 */
 
 
+<<<<<<< HEAD
 //}
 
 fs.appendFileSync('log.txt',new Date()+ ' END' + '\n')
@@ -941,3 +1006,8 @@ fs.appendFileSync('log.txt',new Date()+ ' END' + '\n')
 
 
 
+=======
+}
+
+fs.appendFileSync('log.txt',new Date()+ ' END' + '\n')
+>>>>>>> cc2f9d28b1ec25f99c86ef0d7db0281815ca469c
