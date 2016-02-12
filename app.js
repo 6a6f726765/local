@@ -1,9 +1,5 @@
 "use strict";
-<<<<<<< HEAD
-//1.80
-=======
-//1.70
->>>>>>> cc2f9d28b1ec25f99c86ef0d7db0281815ca469c
+//1.90
 
 //-----------------------------------------------------------------
 // Leer archivo de texto
@@ -35,12 +31,11 @@ for (var i = 0; i < lines.length; i++)
 
 // Leer archivo de texto
 //-----------------------------------------------------------------
-//var next = (db.length-13) // Numero Menor
-var next = 2
+
 var next = 2 // Numero Menor
 
-//for (next ;next < db.length ;next++ ) {
-//for (next ;next < 13;next++ ) {
+
+for (next ;next < db.length ;next++ ) {
     
 var back = next+1    
 
@@ -74,10 +69,10 @@ for (x=0;x<iMax;x++)
 
 //----Crear HEADER Array de 45 x 45
 
-for (let p17 = 0; p17 < 46; p17++)
+for (p = 0; p < 46; p++)
 {
-    db1[0][p17]=p17
-    db1[p17][0]=p17
+    db1[0][p]=p
+    db1[p][0]=p
 }
 //----Crear HEADER Array de 45 x 45
 
@@ -85,23 +80,28 @@ for (let p17 = 0; p17 < 46; p17++)
 //-----------------------------------------------------------------
 
 
+
+var p; var q;
+
+//-----------------------------------------------------------------
+/*
+  for (p=0;p<(db.length-1);p++)
+    {   for (q=0;q<5;q++)
+        {
+            process.stdout.write(db[p][q])
+        }
+    }
+*/
 //-----------------------------------------------------------------
 //Buscar e indexar coincidencias Array de 45 x 45 con header
  
-var p18; var q18; 
- 
- //console.log(((db.length-back)-1000))
- //let bloque = 0;
- //let inicio = ((db.length-back)-bloque);
- 
- 
 for(var num=1;num<46;num++)
-{   for (p18=0;p18<db.length;p18++)
-    {   for (q18=0;q18<7;q18++)
-        {   if (num== db[p18][q18] )
-            {   for (var i =0;i<7;i++)
+{   for (p=0;p<(db.length-back);p++)
+    {   for (q=0;q<6;q++)
+        {   if (num== db[p][q] )
+            {   for (var i =0;i<6;i++)
                 {   for (var num2=1;num2<46;num2++)
-                    {   if (num2==db[p18+1][i])
+                    {   if (num2==db[p+1][i])
                         {
                            db1[num][num2]+= 1
                         }
@@ -116,27 +116,25 @@ for(var num=1;num<46;num++)
 
 //-----------------------------------------------------------------
 //Imprimir Array de 45 x 45 con header
-//var filePath = "/Users/jorge/Node/inception/local/45x45.txt" ;
-//fs.unlinkSync(filePath);
-
+/*
+var long45 = 11;
+       
 
 for (p = 0; p < 46; p++) 
-    {   for (q = 0; q < 46; q++)
-        fs.appendFileSync('backlog.txt',db1[p][q] + '\t');
+    {   for (q = 0; q < long45; q++)
+        process.stdout.write(db1[p][q] + '\t');
             {
-                fs.appendFileSync('backlog.txt','\n');
+                process.stdout.write('\n');
             }
 }
-
-  fs.appendFileSync('backlog.txt','\n');
-
+*/
 //Imprimir Array de 45 x 45 con header
 //-----------------------------------------------------------------
 
 
 //-----------------------------------------------------------------
 //Imprimir en archivo TXT Array de 45 x 45 con header
-/*
+
 var filePath = "/Users/jorge/Node/inception/local/45x45.txt" ;
 fs.unlinkSync(filePath);
 
@@ -148,7 +146,7 @@ fs.unlinkSync(filePath);
                 }
 
   }
-*/
+
 //Imprimir en archivo TXT Array de 45 x 45 con header
 //-----------------------------------------------------------------
 
@@ -604,6 +602,8 @@ db_stdev_xline[7][0]="SUMA"
 
 // Calcular promedio y desviacion Stantadar db_stdev_Xline SUMA
 
+db_stdev_xline[8][0]="AVERAGE"         
+db_stdev_xline[9][0]="STDEV.P" 
 
 var count=0        
 for (var p12=1;p12<46;p12++)
@@ -710,21 +710,20 @@ for (var p4 =1;p4<46;p4++)
     }
 // COMENTARIOS
 //-----------------------------------------------------------------
-
+/*
 //-----------------------------------------------------------------
 
 // Imprimir contenido del Array  db_stdev (Desviacion Estandard)
 
- fs.appendFileSync('backlog.txt',"Desviacion Estandard" + '\n')
+ console.log("Desviacion Estandard")
 
- for (p = 0; p < 15; p++) {
-    for (q = 0; q < 50; q++)
-        fs.appendFileSync('backlog.txt',db_stdev[p][q] + '\t')
+ for (p = 0; p < 13; p++) {
+    for (q = 0; q < 4; q++)
+        process.stdout.write(db_stdev[p][q] + '\t');
     {
-        fs.appendFileSync('backlog.txt','\n');
+        process.stdout.write('\n');
     }
 }
-fs.appendFileSync('backlog.txt','\n');
 
 // Imprimir contenido del Array  db_stdev (Desviacion Estandard)
 //-----------------------------------------------------------------
@@ -733,16 +732,16 @@ fs.appendFileSync('backlog.txt','\n');
 //-----------------------------------------------------------------
 // Imprimir contenido del Array  db_stdev_line (Desviacion Estandard)
 
-fs.appendFileSync('backlog.txt',"Desviacion Estandard Resultado VERTICAL" + '\n')
+console.log("Desviacion Estandard Resultado VERTICAL")
 
- for (p = 0; p < 15 ; p++) {
-    for (q = 0; q < 50; q++)
-        fs.appendFileSync('backlog.txt',db_stdev_line[p][q] + '\t');
+ for (p = 0; p < 13 ; p++) {
+    for (q = 0; q < 4; q++)
+        process.stdout.write(db_stdev_line[p][q] + '\t');
     {
-        fs.appendFileSync('backlog.txt','\n');
+        process.stdout.write('\n');
     }
 }
-  fs.appendFileSync('backlog.txt','\n');
+
 // Imprimir contenido del Array  db_stdev (Desviacion Estandard)
 //-----------------------------------------------------------------
 
@@ -750,36 +749,24 @@ fs.appendFileSync('backlog.txt',"Desviacion Estandard Resultado VERTICAL" + '\n'
 //-----------------------------------------------------------------
 // Imprimir contenido del Array  db_stdev_xline (Desviacion Estandard Horizontal)
 
-fs.appendFileSync('backlog.txt',"Desviacion Estandard Resultado HORIZONTAL" + '\n')
+console.log("Desviacion Estandard Resultado HORIZONTAL")
 
-<<<<<<< HEAD
- for (p = 0; p < 15 ; p++) {
-    for (q = 0; q < 50; q++)
-        fs.appendFileSync('backlog.txt',db_stdev_xline[p][q] + '\t');
-=======
  for (p = 0; p < 14 ; p++) {
     for (q = 0; q < 4; q++)
         process.stdout.write(db_stdev_xline[p][q] + '\t');
->>>>>>> cc2f9d28b1ec25f99c86ef0d7db0281815ca469c
     {
-        //process.stdout.write('\n');
-        fs.appendFileSync('backlog.txt','\n');
+        process.stdout.write('\n');
     }
 }
 
-  fs.appendFileSync('backlog.txt','\n');
+
 // Imprimir contenido del Array  db_stdev_xline (Desviacion Estandard Horizontal)
-//----------------------------------------------------------------
+//-----------------------------------------------------------------
+*/
 
 //-----------------------------------------------------------------
 // IMPRIMI EL HEADER DE LA LINEA A EVALUAR
 
-<<<<<<< HEAD
-//-----------------------------------------------------------------
-// IMPRIMI EL HEADER DE LA LINEA A EVALUAR
-
-=======
->>>>>>> cc2f9d28b1ec25f99c86ef0d7db0281815ca469c
 console.log(db.length-next)
 fs.appendFileSync('log2.txt',db.length-next+'\n')
 
@@ -790,11 +777,7 @@ for (var p16=0;p16<7;p16++)
                      
         }
 process.stdout.write('\n')
-<<<<<<< HEAD
-fs.appendFileSync('backlog.txt','\n')
-=======
 fs.appendFileSync('log2.txt','\n')
->>>>>>> cc2f9d28b1ec25f99c86ef0d7db0281815ca469c
 
 // IMPRIMI EL HEADER DE LA LINEA A EVALUAR
 //-----------------------------------------------------------------
@@ -805,15 +788,6 @@ fs.appendFileSync('log2.txt','\n')
         {   for (var p6=0;p6 <6;p6++) 
                     {   if (db[(db.length-next)][p6] == db_stdev_line[8][p5] )       
                         {
-<<<<<<< HEAD
-                         process.stdout.write('MODE 1' + '\t' + (db.length-next)+ '\t'+ db_stdev_line[8][p5] + '\t' +"ERROR"+'\n')   
-                            fs.appendFileSync('log2.txt','MODE 1' + '\t' + (db.length-next)+ '\t'+ db_stdev_line[8][p5] + '\t' +"ERROR"+'\n')
-                        }    
-                                
-                     }
-                process.stdout.write('MODE 1' + '\t' + (db.length-next)+ '\t'+ db_stdev_line[8][p5] + '\t' + "CHECK"+'\n') 
-                fs.appendFileSync('log2.txt','MODE 1' + '\t' + (db.length-next)+ '\t'+ db_stdev_line[8][p5] + '\t' + "CHECK"+'\n')    
-=======
                             console.log(db_stdev_line[8][p5] + " ERROR")   
                             fs.appendFileSync('error2.txt',db.length-next +" ERROR"+'\n')
                             fs.appendFileSync('log2.txt',db_stdev_line[8][p5] + " ERROR"+'\n')
@@ -823,7 +797,6 @@ fs.appendFileSync('log2.txt','\n')
                 console.log(db_stdev_line[8][p5] + " CHECK") 
                 fs.appendFileSync('error2.txt',db.length-next +" CHECK"+'\n')
                 fs.appendFileSync('log2.txt',db_stdev_line[8][p5] + " CHECK"+'\n')    
->>>>>>> cc2f9d28b1ec25f99c86ef0d7db0281815ca469c
        }                    
   
    }
@@ -836,22 +809,13 @@ fs.appendFileSync('log2.txt','\n')
         {   for (var p15=0;p15 <7;p15++) 
                 {   if (db[(db.length-next)][p15] == db_stdev_xline[12][p14] )       
                         {   
-<<<<<<< HEAD
-                            process.stdout.write('MODE 2' + '\t' + (db.length-next)+ '\t'+ db_stdev_xline[12][p14] + '\t' + "ERROR"+'\n')   
-                            fs.appendFileSync('log2.txt','MODE 2' + '\t' + (db.length-next)+ '\t'+ db_stdev_xline[12][p14] + '\t' + "ERROR"+'\n')
-=======
                             console.log(db_stdev_xline[12][p14] + " ERROR" )   
                             fs.appendFileSync('error2.txt',db.length-next + " ERROR"+'\n')
                             fs.appendFileSync('log2.txt',db_stdev_xline[12][p14] + " ERROR"+'\n')
->>>>>>> cc2f9d28b1ec25f99c86ef0d7db0281815ca469c
                         }
                        
                 }
                 
-<<<<<<< HEAD
-                          process.stdout.write('MODE 2' + '\t' + (db.length-next)+ '\t'+ db_stdev_xline[12][p14] + '\t' + "CHECK"+'\n') 
-                          fs.appendFileSync('log2.txt','MODE 2' + '\t' + (db.length-next)+ '\t'+ db_stdev_xline[12][p14] + '\t' + "CHECK"+'\n') 
-=======
                           console.log(db_stdev_xline[12][p14] + " CHECK" ) 
                           fs.appendFileSync('error2.txt',db.length-next + " CHECK"+'\n')
                           fs.appendFileSync('log2.txt',db_stdev_xline[12][p14] + " CHECK"+'\n') 
@@ -859,7 +823,6 @@ fs.appendFileSync('log2.txt','\n')
                       
          
                                                 
->>>>>>> cc2f9d28b1ec25f99c86ef0d7db0281815ca469c
         }
             
  }
@@ -871,26 +834,16 @@ fs.appendFileSync('log2.txt','\n')
         {   for (var p15=0;p15 <7;p15++) 
                 {   if (db[(db.length-next)][p15] == db_stdev_xline[13][p14] )       
                         {   
-<<<<<<< HEAD
-                            process.stdout.write('MODE 3' + '\t' + (db.length-next)+ '\t' + db_stdev_xline[13][p14] +  '\t' + "ERROR"+'\n')   
-                            fs.appendFileSync('log2.txt','MODE 3' + '\t' + (db.length-next)+ '\t' + db_stdev_xline[13][p14] +  '\t' + "ERROR"+'\n')
-=======
                             console.log(db_stdev_xline[13][p14] + " ERROR" )   
                             fs.appendFileSync('error2.txt',db.length-next + " ERROR"+'\n')
                             fs.appendFileSync('log2.txt',db_stdev_xline[13][p14] + " ERROR"+'\n')
->>>>>>> cc2f9d28b1ec25f99c86ef0d7db0281815ca469c
                         }
                        
                 }
                 
-<<<<<<< HEAD
-                          process.stdout.write('MODE 3' + '\t' + (db.length-next)+ '\t' + db_stdev_xline[13][p14] + '\t' + "CHECK"+'\n') 
-                          fs.appendFileSync('log2.txt','MODE 3' + '\t' + (db.length-next)+ '\t' + db_stdev_xline[13][p14] + '\t' + "CHECK"+'\n') 
-=======
                           console.log(db_stdev_xline[13][p14] + " CHECK" ) 
                           fs.appendFileSync('error2.txt',db.length-next + " CHECK"+'\n')
                           fs.appendFileSync('log2.txt',db_stdev_xline[13][p14] + " CHECK"+'\n') 
->>>>>>> cc2f9d28b1ec25f99c86ef0d7db0281815ca469c
         }
             
  }
@@ -992,17 +945,6 @@ exports.size = function (x) {
 */
 
 
-<<<<<<< HEAD
-//}
-
-fs.appendFileSync('log.txt',new Date()+ ' END' + '\n')
-
-
-
-
-
-=======
 }
 
 fs.appendFileSync('log.txt',new Date()+ ' END' + '\n')
->>>>>>> cc2f9d28b1ec25f99c86ef0d7db0281815ca469c
