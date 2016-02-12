@@ -35,14 +35,9 @@ for (var i = 0; i < lines.length; i++)
 
 // Leer archivo de texto
 //-----------------------------------------------------------------
-
-<<<<<<< HEAD
 //var next = (db.length-13) // Numero Menor
 var next = 2
-=======
 var next = 2 // Numero Menor
-
->>>>>>> cc2f9d28b1ec25f99c86ef0d7db0281815ca469c
 
 //for (next ;next < db.length ;next++ ) {
 //for (next ;next < 13;next++ ) {
