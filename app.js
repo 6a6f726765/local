@@ -835,14 +835,12 @@ fs.appendFileSync('log2.txt','\n')
                 {   if (db[(db.length-next)][p15] == db_stdev_xline[13][p14] )       
                         {   
                             console.log(db_stdev_xline[13][p14] + " ERROR" )   
-                            fs.appendFileSync('error2.txt',db.length-next + " ERROR"+'\n')
                             fs.appendFileSync('log2.txt',db_stdev_xline[13][p14] + " ERROR"+'\n')
                         }
                        
                 }
                 
                           console.log(db_stdev_xline[13][p14] + " CHECK" ) 
-                          fs.appendFileSync('error2.txt',db.length-next + " CHECK"+'\n')
                           fs.appendFileSync('log2.txt',db_stdev_xline[13][p14] + " CHECK"+'\n') 
         }
             
