@@ -839,8 +839,7 @@ fs.appendFileSync('log2.txt','\n')
                         }
                        
                 }
-                
-                          console.log(db_stdev_xline[13][p14] + " CHECK" ) 
+                console.log(db_stdev_xline[13][p14] + " CHECK" ) 
                           fs.appendFileSync('log2.txt',db_stdev_xline[13][p14] + " CHECK"+'\n') 
         }
             
