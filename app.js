@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 //2.0
 
 //-----------------------------------------------------------------
@@ -33,9 +33,9 @@ for (var i = 0; i < lines.length; i++)
 //-----------------------------------------------------------------
 
 //var next = (db.length-13) // Numero Menor
-var next = 2
+var next = 4
 
-//for (next ;next < db.length ;next++ ) {
+for (next ;next < db.length ;next++ ) {
 //for (next ;next < 13;next++ ) {
     
 var back = next+1    
@@ -82,22 +82,21 @@ for (let p17 = 0; p17 < 46; p17++)
 
 
 //-----------------------------------------------------------------
-//Buscar e indexar coincidencias Array de 45 x 45 con header
+//Buscar e indexar coinci//dencias Array de 45 x 45 con header
  
 let p18; let q18; 
  
- //console.log(((db.length-back)-1000))
- //let bloque = 0;
- //let inicio = ((db.length-back)-bloque);
+ let bloque = 100;
+ let inicio = ((db.length-back)-bloque);
  
  
 for(var num=1;num<46;num++)
-{   for (p=0;p<(db.length-back);p++)
-    {   for (q=0;q<6;q++)
-        {   if (num== db[p][q] )
-            {   for (var i =0;i<6;i++)
+{   for (p18=inicio;p18<(db.length-back);p18++)
+    {   for (q18=0;q18<7;q18++)
+        {   if (num== db[p18][q18] )
+            {   for (var i =0;i<7;i++)
                 {   for (var num2=1;num2<46;num2++)
-                    {   if (num2==db[p+1][i])
+                    {   if (num2==db[p18+1][i])
                         {
                            db1[num][num2]+= 1
                         }
@@ -784,15 +783,15 @@ fs.appendFileSync('backlog.txt','\n')
  for (var p5=1;p5<46;p5++)
  {  if (db_stdev_line[8][p5]>0) 
         {   for (var p6=0;p6 <6;p6++) 
-                    {   if (db[(db.length-next)][p6] == db_stdev_line[8][p5] )       
+                    {   if (db[(db.length-back)][p6] == db_stdev_line[8][p5] )       
                         {
-                         process.stdout.write('MODE 1' + '\t' + (db.length-next)+ '\t'+ db_stdev_line[8][p5] + '\t' +"ERROR"+'\n')   
-                            fs.appendFileSync('log2.txt','MODE 1' + '\t' + (db.length-next)+ '\t'+ db_stdev_line[8][p5] + '\t' +"ERROR"+'\n')
+                         process.stdout.write('MODE 1' + '\t' + (db.length-back)+ '\t'+ db_stdev_line[8][p5] + '\t' +"ERROR"+'\n')   
+                            fs.appendFileSync('log2.txt','MODE 1' + '\t' + (db.length-back)+ '\t'+ db_stdev_line[8][p5] + '\t' +"ERROR"+'\n')
                         }    
                                 
                      }
-                process.stdout.write('MODE 1' + '\t' + (db.length-next)+ '\t'+ db_stdev_line[8][p5] + '\t' + "CHECK"+'\n') 
-                fs.appendFileSync('log2.txt','MODE 1' + '\t' + (db.length-next)+ '\t'+ db_stdev_line[8][p5] + '\t' + "CHECK"+'\n')    
+                process.stdout.write('MODE 1' + '\t' + (db.length-back)+ '\t'+ db_stdev_line[8][p5] + '\t' + "CHECK"+'\n') 
+                fs.appendFileSync('log2.txt','MODE 1' + '\t' + (db.length-back)+ '\t'+ db_stdev_line[8][p5] + '\t' + "CHECK"+'\n')    
        }                    
   
    }
@@ -803,16 +802,16 @@ fs.appendFileSync('backlog.txt','\n')
  for (var p14=1;p14<46;p14++)
  {  if (db_stdev_xline[12][p14]>0) 
         {   for (var p15=0;p15 <7;p15++) 
-                {   if (db[(db.length-next)][p15] == db_stdev_xline[12][p14] )       
+                {   if (db[(db.length-back)][p15] == db_stdev_xline[12][p14] )       
                         {   
-                            process.stdout.write('MODE 2' + '\t' + (db.length-next)+ '\t'+ db_stdev_xline[12][p14] + '\t' + "ERROR"+'\n')   
-                            fs.appendFileSync('log2.txt','MODE 2' + '\t' + (db.length-next)+ '\t'+ db_stdev_xline[12][p14] + '\t' + "ERROR"+'\n')
+                            process.stdout.write('MODE 2' + '\t' + (db.length-back)+ '\t'+ db_stdev_xline[12][p14] + '\t' + "ERROR"+'\n')   
+                            fs.appendFileSync('log2.txt','MODE 2' + '\t' + (db.length-back)+ '\t'+ db_stdev_xline[12][p14] + '\t' + "ERROR"+'\n')
                         }
                        
                 }
                 
-                          process.stdout.write('MODE 2' + '\t' + (db.length-next)+ '\t'+ db_stdev_xline[12][p14] + '\t' + "CHECK"+'\n') 
-                          fs.appendFileSync('log2.txt','MODE 2' + '\t' + (db.length-next)+ '\t'+ db_stdev_xline[12][p14] + '\t' + "CHECK"+'\n') 
+                          process.stdout.write('MODE 2' + '\t' + (db.length-back)+ '\t'+ db_stdev_xline[12][p14] + '\t' + "CHECK"+'\n') 
+                          fs.appendFileSync('log2.txt','MODE 2' + '\t' + (db.length-back)+ '\t'+ db_stdev_xline[12][p14] + '\t' + "CHECK"+'\n') 
         }
             
  }
@@ -822,21 +821,19 @@ fs.appendFileSync('backlog.txt','\n')
  for (var p14=1;p14<46;p14++)
  {  if (db_stdev_xline[13][p14]>0) 
         {   for (var p15=0;p15 <7;p15++) 
-                {   if (db[(db.length-next)][p15] == db_stdev_xline[13][p14] )       
+                {   if (db[(db.length-back)][p15] == db_stdev_xline[13][p14] )       
                         {   
-                            process.stdout.write('MODE 3' + '\t' + (db.length-next)+ '\t' + db_stdev_xline[13][p14] +  '\t' + "ERROR"+'\n')   
-                            fs.appendFileSync('log2.txt','MODE 3' + '\t' + (db.length-next)+ '\t' + db_stdev_xline[13][p14] +  '\t' + "ERROR"+'\n')
+                            process.stdout.write('MODE 3' + '\t' + (db.length-back)+ '\t' + db_stdev_xline[13][p14] +  '\t' + "ERROR"+'\n')   
+                            fs.appendFileSync('log2.txt','MODE 3' + '\t' + (db.length-back)+ '\t' + db_stdev_xline[13][p14] +  '\t' + "ERROR"+'\n')
                         }
                        
                 }
                 
-                          process.stdout.write('MODE 3' + '\t' + (db.length-next)+ '\t' + db_stdev_xline[13][p14] + '\t' + "CHECK"+'\n') 
-                          fs.appendFileSync('log2.txt','MODE 3' + '\t' + (db.length-next)+ '\t' + db_stdev_xline[13][p14] + '\t' + "CHECK"+'\n') 
+                          process.stdout.write('MODE 3' + '\t' + (db.length-back)+ '\t' + db_stdev_xline[13][p14] + '\t' + "CHECK"+'\n') 
+                          fs.appendFileSync('log2.txt','MODE 3' + '\t' + (db.length-back)+ '\t' + db_stdev_xline[13][p14] + '\t' + "CHECK"+'\n') 
         }
             
  }
- 
- 
  
  
 /* 
@@ -933,7 +930,7 @@ exports.size = function (x) {
 */
 
 
-//}
+}
 
 fs.appendFileSync('log.txt',new Date()+ ' END' + '\n')
 
