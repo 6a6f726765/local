@@ -85,9 +85,14 @@ for (let p17 = 0; p17 < 46; p17++)
 //Buscar e indexar coinci//dencias Array de 45 x 45 con header
  
 let p18; let q18; 
- 
- let bloque = 100;
- let inicio = ((db.length-back)-bloque);
+// 200;100; 50; 
+ //let bloque = 200;
+ for (let bloque=1;bloque<(db.length-back);bloque++) 
+ {
+console.log('ITERACION'+'\t'+bloque)
+
+ let inicio = ((db.length-back)-bloque)
+     
  
  
 for(var num=1;num<46;num++)
@@ -929,7 +934,7 @@ exports.size = function (x) {
 //-----------------------------------------------------------------
 */
 
-
+ }
 }
 
 fs.appendFileSync('log.txt',new Date()+ ' END' + '\n')
